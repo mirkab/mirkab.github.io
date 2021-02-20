@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-    <title> GEOG 485L/585L -- My First Map </title>
+    <title> GEOG 485L/585L -- MyWebMap </title>
 </head>
 <body>
+    <p>Return to <a href="index.html"><b> Main Page</b></a>. </p>
     <p>
-        My first map will appear here: 
+        The app will include two primary elements: a map display of the 32 BEMP sites, and a multiline plot with two y axes plotting average depth to groundwater and river stage (Fig 1). The map display will default to a view of the 32 BEMP research sites. Mousing over the sites will yield a tooltip with information on the date of each site’s establishment, any ecological disturbances known to have occurred since establishment (such as flooding or wildfire), and any natural resource management interventions that have been performed (woodchipping, bank lowering, etc). 
+The multiline plot will include brush and zoom elements which will default to display annualized groundwater and river stage values, but also allow users to zoom to examine monthly data. The display will be controlled by a drop-down list above the plot, defaulting to an average of all 32 sites and allowing users to examine individual sites. Time permitting, we will add in a second view option to allow users to compare groundwater and river stage values at two different sites, or one site against the average of all 32 sites. The plot will be connected with a map of the BEMP research sites, and zoom automatically to the site selected from the dropdown list. 
+
     </p>
-    <div id="mapID" style="height:400px; width: 600px"></div>
-    <script>
-        // Bandlier Hall East lat/long: 35.0843° N, 106.6241° W
-        // Create a map variable "mymap" that points to the map placed in the mapID <div.
-        //zoom the view on Bandelier Hall East Building at a 17 Zoom Level
-        var mymap = L.map('mapID').setView([35.0844, -106.6244], 17);
 
-        // create a variable named "osm" that is used to hold OpenStreetMap title layer
-        var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-
-        //add the OpenstreetMap title layer (i.e., the variable osm you defined above) to the map
-        osm.addTo(mymap); 
-
-    </script>
 </body>
 </html>
