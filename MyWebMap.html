@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <title> GEOG 485L/585L -- My First Map </title>
+</head>
+<body>
+    <p>
+        My first map will appear here: 
+    </p>
+    <div id="mapID" style="height:400px; width: 600px"></div>
+    <script>
+        // Bandlier Hall East lat/long: 35.0843° N, 106.6241° W
+        // Create a map variable "mymap" that points to the map placed in the mapID <div.
+        //zoom the view on Bandelier Hall East Building at a 17 Zoom Level
+        var mymap = L.map('mapID').setView([35.0844, -106.6244], 17);
+
+        // create a variable named "osm" that is used to hold OpenStreetMap title layer
+        var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+        //add the OpenstreetMap title layer (i.e., the variable osm you defined above) to the map
+        osm.addTo(mymap); 
+
+    </script>
+</body>
+</html>
