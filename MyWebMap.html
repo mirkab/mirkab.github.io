@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="MyWebApp/JS_CSS_downloaded_libraries/Bootstrap.css">
     <link rel="stylesheet" href="MyWebApp/JS_CSS_downloaded_libraries/leaflet.css">
     <link rel="stylesheet" href="MyWebApp/myCSS_styleFiles/mapStyles.css">
-    <link href="MyCSS_styleFiles/styles.css" rel="stylesheet" />
+    <link href="MyWebApp/MyCSS_styleFiles/styles.css" rel="stylesheet" />
     <link href="MyWebApp/JS_CSS_downloaded_libraries/GoogleFonts.js" rel="stylesheet" type="text/css" />
     <link href="MyWebApp/JS_CSS_downloaded_libraries/GoogleFonts2.css" rel="stylesheet" type="text/css" />
 
@@ -23,6 +23,26 @@
 </head>
 
 <body>
+    <style>
+        .overlay {
+            fill: none;
+            pointer-events: all;
+        }
+
+        .focus circle {
+            fill: white;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+
+        .hover-line {
+            stroke: lightgrey;
+            stroke-width: 2px;
+            stroke-dasharray: 3, 3;
+        }
+    </style>
+
     <!--Create side bar and add BEMP logo-->
     <div class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <span class="d-none d-lg-block"><img class="img-fluid mx-auto mb-2" src="MyWebApp/data/Logo.JPG" alt="" /></span>
@@ -79,10 +99,10 @@
                             Project Supervisor: <a href="https://lipingyang.org/index.html" target="_blank">Dr. Liping
                                 Yang</a> (Course Instructor for Geog 485L/585L Internet Mapping)
                             <br>
-                            Team Member (Map): <a href="https://rowanoaktree.github.io/" target="_blank">Rowan
+                            Team Member: <a href="https://rowanoaktree.github.io/" target="_blank">Rowan
                                 Converse</a> (rowan.converse@gmail.com)
                             <br>
-                            Team Member (Graph): <a href="https://mirkab.github.io/" target="_blank">Blair Mirka</a>
+                            Team Member: <a href="https://mirkab.github.io/" target="_blank">Blair Mirka</a>
                             (mirkab@gmail.com)
                             <br>
                             <br>
@@ -131,304 +151,476 @@
                 <p style="text-align:left"> <i>Drag the overview line chart at the bottom to view more detailed monthly
                         data
                         in the top
-                        multi-line chart.</i></p>
+                        multi-line chart.<br> Sites with no values leave a blank chart</i></p>
 
                 <!-- <svg width="960" height="500"></svg> -->
                 <!-- Adds element for dropdown list  -->
-                <div id="siteIDDropDown"></div>
                 <svg width="700" height="500"></svg>
 
             </div>
         </div>
 
         <script>
-           var myData = "date	New York	San Francisco	Austin\n\
-20111001	63.4	62.7	72.2\n\
-20111002	58.0	59.9	67.7\n\
-20111003	53.3	59.1	69.4\n\
-20111004	55.7	58.8	68.0\n\
-20111005	64.2	58.7	72.4\n\
-20111006	58.8	57.0	77.0\n\
-20111007	57.9	56.7	82.3\n\
-20111008	61.8	56.8	78.9\n\
-20111009	69.3	56.7	68.8\n\
-20111010	71.2	60.1	68.7\n\
-20111011	68.7	61.1	70.3\n\
-20111012	61.8	61.5	75.3\n\
-20111013	63.0	64.3	76.6\n\
-20111014	66.9	67.1	66.6\n\
-20111015	61.7	64.6	68.0\n\
-20111016	61.8	61.6	70.6\n\
-20111017	62.8	61.1	71.1\n\
-20111018	60.8	59.2	70.0\n\
-20111019	62.1	58.9	61.6\n\
-20111020	65.1	57.2	57.4\n\
-20111021	55.6	56.4	64.3\n\
-20111022	54.4	60.7	72.4\n";
+            "use strict"; //JS strict mode
 
-var margin = {
-  top:20,
-  right:80,
-  bottom:30,
-  left:50
-};
-
-var w = 900 - margin.left - margin.right;
-var h = 500 - margin.top - margin.bottom;
-
-var parseDate = d3.timeParse("%Y%m%d");
-
-var scaleX = d3.scaleTime()
-.range([0,w]);
-
-var scaleY = d3.scaleLinear()
-.range([h,0]);
-
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-var xAxis = d3.axisBottom()
-.scale(scaleX);
-
-var yAxis = d3.axisLeft()
-.scale(scaleY)
-
-var line = d3.line()
-.x(function(d){
-  return scaleX(d.date)
-})
-.y(function(d){
-  return scaleY(d.temperature)
-})
-.curve(d3.curveBasis);
-
-var svg = d3.select("body").append("svg")
-.attr("width",w + margin.left + margin.right)
-.attr("height",h + margin.top + margin.bottom)
-// .style("background-color","lightGreen")
-.append("g")
-.attr("transform","translate("+margin.left +","+margin.top+")")
+            //   define a global variable to hold the currently selected dropdown option
+            var siteID_current_dropdown_selected = "Avg";
+            console.log(siteID_current_dropdown_selected);
+            console.log(typeof (siteID_current_dropdown_selected));
 
 
-var data = d3.tsvParse(myData);
-console.log("data is",data)
+            // window.onload = function () { //Dr. Yang added to declare global variable.
 
-color.domain(d3.keys(data[0]).filter(function(key){
-  console.log("key",key)
-  return key!=="date";
+            //THE MODAL
 
-}))
+            // Get the modal
+            var modal = document.getElementById("myModal");
 
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
 
-data.forEach(function(d){
-  d.date = parseDate(d.date);
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
 
-});
+            // When the user clicks on the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
 
-var cities = color.domain().map(function(name){
-  return {
-    name:name,
-    values:data.map(function(d){
-      return {
-        date:d.date,
-        temperature:+d[name]
-      };
-    })
-  };
-});
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
 
-scaleX.domain(d3.extent(data,function(d){
-  return d.date;
-}));
-scaleY.domain([d3.min(cities,function(c){
-  return d3.min(c.values,function(v){
-    return v.temperature
-  })
-}),d3.max(cities,function(c){
-  return d3.max(c.values,function(v){
-    return v.temperature;
-  })
-})])
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
 
-console.log("cities",cities);
+            //THE MAP
 
-var legend = svg.selectAll("g")
-.data(cities)
-.enter()
-.append("g")
-.attr("class","legend");
+            //create Leaflet map to attach to map container
+            var map = L.map('map');
 
-legend.append("rect")
-.attr("x",w-20)
-.attr("y",function(d,i){
-  return i * 20;
-})
-.attr("width",10)
-.attr("height",10)
-.style("fill",function(d){
-  return color(d.name);
-});
+            //Tile layers, default to satellite imagery display
+            var osm = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            });
+            var USGS_USImagery = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 20,
+                attribution: '© <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+            });
+            //add imagery to map
+            USGS_USImagery.addTo(map);
 
-legend.append("text")
-.attr("x",w-8)
-.attr("y",function(d,i){
-  return (i * 20) + 9;
-})
-.text(function(d){
-  return d.name;
-});
+            //Credit for dropdown list + popup code: http://jsfiddle.net/nathansnider/avn0ph1p/
+            var bempSites = L.geoJson(bempSites, {
+                onEachFeature: function (feature, layer) //functionality on click on feature
+                {
+                    layer.bindPopup(
+                        "<b>Site Name:</b> " + feature.properties.site + "<br>" +
+                        "<b>Established:</b> " + feature.properties.est + "<br>" +
+                        "<b>Flooding site?</b> " + feature.properties.flooding + "<br>" +
+                        "<b>Other Disturbances:</b> " + feature.properties.otherDisturbance + "<br>" +
+                        "<b>Management Interventions:</b> " + feature.properties.management);
+                }
+            }).addTo(map);
 
-svg.append("g")
-.attr("class","x axis")
-.attr("transform","translate(0,"+h+")")
-.call(xAxis);
+            map.fitBounds(bempSites.getBounds());
 
-svg.append("g")
-.attr("class","y axis")
-.call(yAxis)
-.append("text")
-.attr("transform","rotate(-90)")
-.attr("y",6)
-.attr("dy",".71em")
-.style("text-anchor","end")
-.style("fill","black")
-.text("Temperature (ºF)");
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            //creating the selector control//
+            ////////////////////////////////////////////////////////////////////////////////////////////
 
-var city = svg.selectAll(".city")
-.data(cities)
-.enter().append("g")
-.attr("class","city");
+            //create Leaflet control for selector
+            var selector = L.control({
+                position: 'topright'
+            });
 
-city.append("path")
-.attr("class","line")
-.attr("d",function(d){
-  return line(d.values);
-})
-.style("stroke",function(d){
-  return color(d.name)
-});
+            //create select element (with id, so it can be populated later)
+            selector.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'select');
+                div.innerHTML = '<select id="site_select"><option>(Select Site)</option></select>';
+                return div;
+            };
+            selector.addTo(map);
 
-city.append("text")
-.datum(function(d){
+            function populateSelect(targetLayer, property, select_id) {
+                // for (var i in targetLayer._layers) {
+                for (var i in targetLayer._layers) {
+                    var optionElement = document.createElement("option");
+                    optionElement.innerHTML = targetLayer._layers[i].feature.properties[property];
+                    //store layer index in option element's value attribute
+                    optionElement.value = i;
 
-  return{
-    name:d.name,
-    value:d.values[d.values.length -1]
-  };
-})
-.attr("transform",function(d){
-  return "translate(" + scaleX(d.value.date)+","+scaleY(d.value.temperature)+")";
-})
-.attr("x",3)
-.attr("dy",".35")
-.text(function(d){
-  return d.name;
-});
+                    console.log(typeof (i));
+                    // optionElement.value = targetLayer._layers[i].feature.properties[property];
 
-var mouseG = svg.append("g") // this the black vertical line to folow mouse
-.attr("class","mouse-over-effects");
+                    console.log(optionElement.value);
 
-mouseG.append("path")
-.attr("class","mouse-line")
-.style("stroke","black")
-.style("stroke-width","1px")
-.style("opacity","0");
+                    document.getElementById(select_id).appendChild(optionElement);
+                }
+            }
 
-var lines = document.getElementsByClassName("line");
-var mousePerLine = mouseG.selectAll(".mouse-per-line")
-.data(cities)
-.enter()
-.append("g")
-.attr("class","mouse-per-line");
+            //populate site_select element with site IDs for all markers in bempSites
+            populateSelect(bempSites, "siteID", "site_select");
 
-mousePerLine.append("circle")
-.attr("r",7)
-.style("stroke",function(d){
-  return color(d.name);
-})
-.style("fill", "none")
-.style("stroke-width", "1px")
-.style("opacity", "0");
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            //setting up event listeners//
+            ////////////////////////////////////////////////////////////////////////////////////////////
 
-mousePerLine.append("text")
-.attr("transform","translate(10,3)");
+            var site_select = L.DomUtil.get("site_select");
 
-mouseG.append("rect")
-.attr("width",w)
-.attr("height",h)
-.attr("fill","none")
-.attr("pointer-events","all")
-.on("mouseout",function(){
-  d3.select(".mouse-line").style("opacity","0");
-  d3.selectAll(".mouse-per-line circle").style("opacity","0");
-  d3.selectAll(".mouse-per-line text").style("opacity","0")
-})
-.on("mouseover",function(){
-  d3.select(".mouse-line").style("opacity","1");
-  d3.selectAll(".mouse-per-line circle").style("opacity","1");
-  d3.selectAll(".mouse-per-line text").style("opacity","1")
-
-})
-.on("mousemove",function(){
-
-  var mouse = d3.mouse(this);
-  console.log("Mouse:",mouse);
-  d3.select(".mouse-line")
-  .attr("d",function(){
-    var d = "M" + mouse[0] +"," + h;
-    d+=" " +mouse[0] + "," + 0;
-    return d;
-  })
-  // .attr("d",function(){
-  //   var d = "M" + w +"," + mouse[1];
-  //   d+=" " +0 + "," + mouse[1];
-  //   return d;
-  // });
-
-  d3.selectAll(".mouse-per-line")
-  .attr("transform",function(d,i){
-    console.log(w/(mouse[0]));
-    var xDate = scaleX.invert(mouse[0]),
-    bisect =d3.bisector(function(d){ return d.date;}).right;
-    idx = bisect(d.values,xDate);
-    console.log("xDate:",xDate);
-    console.log("bisect",bisect);
-    console.log("idx:",idx)
-
-    var beginning = 0,
-     end = lines[i].getTotalLength(),
-    target = null;
-
-    console.log("end",end);
-
-    while(true){
-      target = Math.floor((beginning+end)/2)
-      console.log("Target:",target);
-      pos = lines[i].getPointAtLength(target);
-      console.log("Position",pos.y);
-      console.log("What is the position here:",pos)
-      if((target ===end || target == beginning) && pos.x !==mouse[0]){
-        break;
-      }
-
-      if(pos.x > mouse[0]) end = target;
-      else if(pos.x < mouse[0]) beginning = target;
-      else break; // position found
-    }
-    d3.select(this).select("text")
-    .text(scaleY.invert(pos.y).toFixed(1))
-    .attr("fill",function(d){
-      return color(d.name)
-    });
-    return "translate(" +mouse[0]+","+pos.y+")";
-
-  });
+            console.log(site_select);
+            console.log(typeof (site_select));
 
 
+            L.DomEvent.addListener(site_select, 'change', changeHandler);
 
-});
+            //prevent clicks on the selector from propagating through to the map
+            //(otherwise popups will close immediately after opening)
+            L.DomEvent.addListener(site_select, 'click', function (e) {
+                L.DomEvent.stopPropagation(e);
+            });
 
-// original graph: https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91
 
+            // Create a global variable from inside the function:
+            // https://www.webdeveloper.com/d/64029-global-variables-not-getting-recognized-on-page-onload/3
+
+
+            function changeHandler(e) {
+                //open popups if the selected option has a numerical value
+                if (isNaN(parseInt(e.target.value))) {
+                    map.closePopup();
+                } else {
+                    bempSites._layers[e.target.value].openPopup(),
+                        map.setView(bempSites._layers[e.target.value].getLatLng(), 16);
+                }
+
+                //Dr. Yang edited code to get the siteID from user dropdown click from the map component
+                // e.target.value is the dropdown option index
+                console.log(e.target.value);
+                // get the selected dropdown list correpsponding point latlong
+                console.log(bempSites._layers[e.target.value].getLatLng());
+
+                //get the option text (i.e., siteID) based on currrently seleted dropdown option index
+                // https://stackoverflow.com/questions/1085801/get-selected-value-in-dropdown-list-using-javascript
+                var e = document.getElementById("site_select");
+                var str_user_selected_dropdownItem_text = e.options[e.selectedIndex].text;
+                console.log(str_user_selected_dropdownItem_text);
+                //Dr. Yang edited code to get the siteID from user dropdown click from the map component
+
+                //updated the global variable to the the curently selected siteID
+                // window.siteID_current_dropdown_selected = str_user_selected_dropdownItem_text;
+                siteID_current_dropdown_selected = str_user_selected_dropdownItem_text;
+
+                console.log(siteID_current_dropdown_selected);
+
+            }
+
+            //Click event zooms to a site
+            bempSites.on('click', function (e) {
+                map.setView(e.latlng, 16);
+                // console.log(e.latlng);
+            });
+
+            var baseMaps = {
+                "Open Street Map": osm,
+                "USGS Satellite": USGS_USImagery
+            };
+            //Add layer control
+            L.control.layers(baseMaps).addTo(map);
+
+            //THE GRAPH
+
+            //Create Graph
+            var svg = d3.select("svg"),
+                margin = { top: 20, right: 50, bottom: 110, left: 40 },
+                margin2 = { top: 430, right: 50, bottom: 30, left: 40 },
+                width = +svg.attr("width") - margin.left - margin.right,
+                height = +svg.attr("height") - margin.top - margin.bottom,
+                height2 = +svg.attr("height") - margin2.top - margin2.bottom;
+
+            //Parse Date
+            var parseDate = d3.timeParse("%m/%d/%Y"),
+                bisectDate = d3.bisector(function (d) { return d.Date; }).left;
+            //Set Scales
+            var x = d3.scaleTime().range([0, width]),
+                x2 = d3.scaleTime().range([0, width]),
+                y = d3.scaleLinear().range([height, 0]),
+                y1 = d3.scaleLinear().range([height, 0]),
+                y2 = d3.scaleLinear().range([height2, 0]),
+                y3 = d3.scaleLinear().range([height2, 0]);
+
+            //Establish Axis
+            var xAxis = d3.axisBottom(x),
+                xAxis2 = d3.axisBottom(x2),
+                yAxis2 = d3.axisRight(y1),
+                yAxis = d3.axisLeft(y);
+
+            //Set Brush and zoom parameters 
+            var brush = d3.brushX()
+                .extent([[0, 0], [width, height2]])
+                .on("brush end", brushed);
+
+            var zoom = d3.zoom()
+                .scaleExtent([1, Infinity])
+                .translateExtent([[0, 0], [width, height]])
+                .extent([[0, 0], [width, height]])
+                .on("zoom", zoomed);
+
+            //Establish Lines
+            var depth = d3.line()
+                .defined(function (d) { return d.AvgDepthtoGroundwater != 0; })
+                .x(function (d) { return x(d.Date); })
+                .y(function (d) { return y1(d.AvgDepthtoGroundwater); });
+
+            var river = d3.line()
+                .defined(function (d) { return d.Rivercfc != 0; })
+                .x(function (d) { return x(d.Date); })
+                .y(function (d) { return y(d.Rivercfc); });
+
+            var depth2 = d3.line()
+                .defined(function (d) { return d.AvgDepthtoGroundwater != 0; })
+                .x(function (d) { return x2(d.Date); })
+                .y(function (d) { return y2(d.AvgDepthtoGroundwater); });
+
+            var river2 = d3.line()
+                .defined(function (d) { return d.Rivercfc != 0; })
+                .x(function (d) { return x(d.Date); })
+                .y(function (d) { return y3(d.Rivercfc); });
+
+            //Clip to graph area to prevent lines extending past graph
+            var clip = svg.append("defs").append("svg:clipPath")
+                .attr("id", "clip")
+                .append("svg:rect")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("x", 0)
+                .attr("y", 0);
+
+            var Line_chart = svg.append("g")
+                .attr("class", "focus")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .attr("clip-path", "url(#clip)");
+
+            var focus = svg.append("g")
+                .attr("class", "focus")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var context = svg.append("g")
+                .attr("class", "context")
+                .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+
+
+            d3.csv("MyWebApp/data/BEMP_Station_Data.csv", type, function (error, data) {
+                if (error) throw error;
+
+                
+
+                var newData = data.filter(filterCriteria);
+
+                function filterCriteria(d) {
+                  
+                    //use the global variable to filter the data for the selected site to update the graph
+                    return d.siteID === siteID_current_dropdown_selected;
+                    console.log(siteID_current_dropdown_selected);
+
+                    console.log(data);
+
+                    console.log(newData);
+
+                    console.log(data);
+                }
+
+                updateGraph(newData);
+
+                // handle on click event
+                d3.select('#site_select')
+                    .on('change', function () {
+                        var newData = data.filter(filterCriteria);
+                        updateGraph(newData);
+                    });
+
+                // define the update Graph function
+                function updateGraph(newData) {
+
+                    // console.log(data);
+
+                    console.log(newData);
+
+                    // console.log(data);
+
+                    //remove previous drawn graph using previously selected siteID start here
+                    d3.selectAll("g > *").remove();
+                    //remove previous drawn graph using previously selected siteID
+
+
+                    //Set Domains of Graphs 
+
+                    x.domain(d3.extent(newData, function (d) { return d.Date; }));
+                    y.domain([0, d3.max(newData, function (d) { return Math.max(d.Rivercfc + 200); })]);
+                    y1.domain([0, d3.max(newData, function (d) { return Math.max(d.AvgDepthtoGroundwater + 100); })]);
+                    x2.domain(x.domain());
+                    y2.domain([0, d3.max(newData, function (d) { return Math.max(d.AvgDepthtoGroundwater); })]);
+                    y3.domain([0, d3.max(newData, function (d) { return Math.max(d.Rivercfc); })]);
+
+                    //add Axis
+
+                    focus.append("g")
+                        .attr("class", "axis axis--x")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(xAxis);
+
+                    focus.append("g")
+                        .attr("class", "axis axis--y")
+                        .call(d3.axisLeft(y));
+
+                    focus.append("g")
+                        .attr("class", "axis axis--y1")
+                        .attr("transform", "translate( " + width + ", 0 )")
+                        .call(d3.axisRight(y1));
+
+
+                    context.append("g")
+                        .attr("class", "axis axis--x")
+                        .attr("transform", "translate(0," + height2 + ")")
+                        .call(xAxis2);
+
+                    //add lines to main chart 
+                    Line_chart.append("path")
+                        .datum(newData)
+                        .attr("class", "line")
+                        .attr("d", depth);
+
+                    Line_chart.append("path")
+                        .datum(newData)
+                        .attr("class", "line3")
+                        .attr("d", river);
+
+                    var focusTip = Line_chart.append("g")
+                        .attr("class", "focusTip")
+                        .style("display", "none");
+
+                    focusTip.append("line")
+                        .attr("class", "x-hover-line hover-line")
+                        .attr("y1", 0)
+                        .attr("y2", height);
+
+                    focusTip.append("circle")
+                        .attr("r", 7.5);
+
+                    focusTip.append("text")
+                        .attr("x", 15)
+                        .attr("dy", ".31em");
+
+                    var focusTip2 = Line_chart.append("g")
+                        .attr("class", "focusTip2")
+                        .style("display", "none");
+
+                    focusTip2.append("line")
+                        .attr("class", "x2-hover-line hover-line")
+                        .attr("y1", 0)
+                        .attr("y2", height);
+
+                    focusTip2.append("circle")
+                        .attr("r", 7.5)
+                        .attr('style', 'stroke:Red');
+
+                    focusTip2.append("text")
+                        .attr("x", 15)
+                        .attr('style', 'background-color:gray')
+                        .attr("dy", ".31em");
+
+
+                    //add lines to subchart 
+                    context.append("path")
+                        .datum(newData)
+                        .attr("class", "line")
+                        .attr("d", depth2);
+
+                    context.append("path")
+                        .datum(newData)
+                        .attr("class", "line3")
+                        .attr("d", river2);
+
+                    //call brush and zoom functions to the graph
+                    context.append("g")
+                        .attr("class", "brush")
+                        .call(brush)
+                        .call(brush.move, x.range());
+
+           
+    
+                    svg.append("rect")
+                        .attr("class", "zoom")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                        .attr("class", "overlay")
+                        .on("mouseover", function () { focusTip.style("display", null); focusTip2.style("display", null); })
+                        .on("mouseout", function () { focusTip.style("display", "none"); focusTip2.style("display", "none"); })
+                        .on("mousemove", mousemove)
+                        .call(zoom);
+
+                    function mousemove() {
+                        var x0 = x.invert(d3.mouse(this)[0]),
+                            i = bisectDate(newData, x0, 1),
+                            d0 = newData[i - 1],
+                            d1 = newData[i],
+                            d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
+                        focusTip.attr("transform", "translate(" + x(d.Date) + "," + y1(d.AvgDepthtoGroundwater) + ")");
+                        focusTip.select("text").text(function () { return d.AvgDepthtoGroundwater; });
+                        focusTip.select(".x-hover-line").attr("y2", height - y1(d.AvgDepthtoGroundwater));
+
+                        focusTip2.attr("transform", "translate(" + x(d.Date) + "," + y(d.Rivercfc) + ")");
+                        focusTip2.select("text").text(function () { return d.Rivercfc; });
+                        focusTip2.select(".x-hover-line").attr("y", height - y(d.Rivercfcs));
+
+
+                    }
+
+
+
+
+
+                };
+            });
+
+            //Add brush and select lines
+            function brushed() {
+                if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+                var s = d3.event.selection || x2.range();
+                x.domain(s.map(x2.invert, x2));
+                Line_chart.select(".line").attr("d", depth);
+                Line_chart.select(".line3").attr("d", river);
+                focus.select(".axis--x").call(xAxis);
+                svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+                    .scale(width / (s[1] - s[0]))
+                    .translate(-s[0], 0));
+            }
+
+            //add zoom 
+            function zoomed() {
+                if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
+                var t = d3.event.transform;
+                x.domain(t.rescaleX(x2).domain());
+                Line_chart.select(".line").attr("d", depth);
+                Line_chart.select(".line3").attr("d", river);
+                focus.select(".axis--x").call(xAxis);
+                context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+            }
+            //type data
+            function type(d) {
+                d.Date = parseDate(d.Date);
+                d.AvgDepthtoGroundwater = +d.AvgDepthtoGroundwater;
+                d.Rivercfc = +d.Rivercfc;
+                return d;
+            }
+
+            // }; //Dr. Yang added to declare global variable. end of window.onload = function () { 
         </script>
 </body>
 
