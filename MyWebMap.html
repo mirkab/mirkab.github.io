@@ -388,7 +388,7 @@
                 .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 
-            d3.csv("data/BEMP_Station_Data.csv", type, function (error, data) {
+            d3.csv("MyWebApp/data/BEMP_Station_Data.csv", type, function (error, data) {
                 if (error) throw error;
 
                 var newData = data.filter(filterCriteria);
