@@ -5,47 +5,27 @@
     <meta charset="UTF-8">
     <title>BEMP Interactive Groundwater Visualization</title>
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="MyWebApp/JS_CSS_downloaded_libraries/Bootstrap.css">
-    <link rel="stylesheet" href="MyWebApp/JS_CSS_downloaded_libraries/leaflet.css">
-    <link rel="stylesheet" href="MyWebApp/myCSS_styleFiles/mapStyles.css">
-    <link href="MyWebApp/MyCSS_styleFiles/styles.css" rel="stylesheet" />
-    <link href="MyWebApp/JS_CSS_downloaded_libraries/GoogleFonts.js" rel="stylesheet" type="text/css" />
-    <link href="MyWebApp/JS_CSS_downloaded_libraries/GoogleFonts2.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="JS_CSS_downloaded_libraries/Bootstrap.css">
+    <link rel="stylesheet" href="JS_CSS_downloaded_libraries/leaflet.css">
+    <link rel="stylesheet" href="myCSS_styleFiles/mapStyles.css">
+    <link href="MyCSS_styleFiles/styles.css" rel="stylesheet" />
+    <link href="JS_CSS_downloaded_libraries/GoogleFonts.js" rel="stylesheet" type="text/css" />
+    <link href="JS_CSS_downloaded_libraries/GoogleFonts2.css" rel="stylesheet" type="text/css" />
 
     <!-- Scripts -->
-    <script src="MyWebApp/JS_CSS_downloaded_libraries/leaflet.js"></script>
-    <script src="MyWebApp/JS_CSS_downloaded_libraries/jQuery.js"></script>
-    <script src="MyWebApp/JS_CSS_downloaded_libraries/Bootstrap.js"></script>
-    <script src="MyWebApp/JS_CSS_downloaded_libraries/d3.js"></script>
-    <script src="MyWebApp/JS_CSS_downloaded_libraries/d3.v4.min.js"></script>
-    <script src="MyWebApp/myJS_scripts/bempSites.js"></script>
-    <script src="MyWebApp/JS_CSS_downloaded_libraries/scripts.js"></script>
+    <script src="JS_CSS_downloaded_libraries/leaflet.js"></script>
+    <script src="JS_CSS_downloaded_libraries/jQuery.js"></script>
+    <script src="JS_CSS_downloaded_libraries/Bootstrap.js"></script>
+    <script src="JS_CSS_downloaded_libraries/d3.js"></script>
+    <script src="JS_CSS_downloaded_libraries/d3.v4.min.js"></script>
+    <script src="myJS_scripts/bempSites.js"></script>
+    <script src="JS_CSS_downloaded_libraries/scripts.js"></script>
 </head>
 
 <body>
-    <style>
-        .overlay {
-            fill: none;
-            pointer-events: all;
-        }
-
-        .focus circle {
-            fill: white;
-            stroke: steelblue;
-            stroke-width: 2px;
-        }
-
-
-        .hover-line {
-            stroke: lightgrey;
-            stroke-width: 2px;
-            stroke-dasharray: 3, 3;
-        }
-    </style>
-
     <!--Create side bar and add BEMP logo-->
     <div class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <span class="d-none d-lg-block"><img class="img-fluid mx-auto mb-2" src="MyWebApp/data/Logo.JPG" alt="" /></span>
+        <span class="d-none d-lg-block"><img class="img-fluid mx-auto mb-2" src="data/Logo.JPG" alt="" /></span>
         </a>
     </div>
     <!--add space-->
@@ -83,21 +63,21 @@
                             important driver of ecosystem functions in the southwest, such as floral and faunal
                             community composition.
                             <br>
-                            This map is intended to serve as a resource for students, educators, and natural resource
+                            This data explorer is intended to serve as a resource for students, educators, and natural resource
                             managers interested in looking at both a landscape overview and a site-level view of
                             groundwater and river flow dynamics at BEMP sites. Depth to groudwater data were collected
                             from wells at BEMP's research sites monthly, and USGS river flow data were derived for each
                             site from the closest-proximity gauging station. We have defaulted the map to display
                             thirty-two BEMP sites with quality-controlled data between 1997 - 2017, and a line chart
-                            averaging groundwater and river flow across sites. The user can select individual sites from
-                            a dropdown list on the map or click on the marker for any site, and the chart will
+                            averaging groundwater and river flow across sites across the same period. The user can select individual sites from
+                            a dropdown list on the map and the chart will
                             automatically update with the individual site's data.
                             <br>
                             <br>
                             <strong>About the Team: </strong>
                             <br>
                             Project Supervisor: <a href="https://lipingyang.org/index.html" target="_blank">Dr. Liping
-                                Yang</a> (Course Instructor for Geog 485L/585L Internet Mapping)
+                                Yang</a> (Course Instructor for UNM GEOG 485L/585L Internet Mapping)
                             <br>
                             Team Member: <a href="https://rowanoaktree.github.io/" target="_blank">Rowan
                                 Converse</a> (rowan.converse@gmail.com)
@@ -115,6 +95,8 @@
                             <br>
                             <a href="https://bl.ocks.org/d3noob/e34791a32a54e015f57d" target="_blank">D3 Line Graph with
                                 Dual Y Axes</a>
+                            <br>
+                            <a href="https://bl.ocks.org/dianaow/0da76b59a7dffe24abcfa55d5b9e163e" target="_blank">D3 Multiline Graph Hover Tooltip</a>
                             <br>
                             <a href="http://jsfiddle.net/nathansnider/avn0ph1p/" target="_blank">JS GeoJSON Marker with
                                 Dropdown Control</a>
@@ -137,7 +119,7 @@
             <!-- <div class="col-xs-6"> -->
             <div class="col-xs-5">
                 <h4>Site Map</h4>
-                <p style="text-align:left"><i>Use the dropdown list or click a marker to zoom to a site on the map. <br>
+                <p style="text-align:left"><i>Use the dropdown list to see more information about a site and zoom to it on the map. <br>
                         The
                         graph will then update with the site's data.</i></p>
                 <div id="map"></div>
@@ -148,10 +130,10 @@
                 <p style="text-align:left"> <i><span style="color:red">Red</span> line: USGS River Flow, cubic feet per
                         second (cfs); <span style="color:steelblue">Blue</span> line: BEMP Depth to Groundwater (cm)</i>
                 </p>
-                <p style="text-align:left"> <i>Drag the overview line chart at the bottom to view more detailed monthly
+                <p style="text-align:left"> <i>Drag the horizontal grey bar in the overview line chart underneath this graph to view more detailed monthly
                         data
                         in the top
-                        multi-line chart.<br> Sites with no values leave a blank chart</i></p>
+                        multi-line chart.<br> Sites with no groundwater data result in a blank chart; missing values result in broken lines.</i></p>
 
                 <!-- <svg width="960" height="500"></svg> -->
                 <!-- Adds element for dropdown list  -->
@@ -167,9 +149,6 @@
             var siteID_current_dropdown_selected = "Avg";
             console.log(siteID_current_dropdown_selected);
             console.log(typeof (siteID_current_dropdown_selected));
-
-
-            // window.onload = function () { //Dr. Yang added to declare global variable.
 
             //THE MODAL
 
@@ -221,6 +200,7 @@
                 {
                     layer.bindPopup(
                         "<b>Site Name:</b> " + feature.properties.site + "<br>" +
+                        "<b>Site ID:</b> " + feature.properties.siteID + "<br>" +
                         "<b>Established:</b> " + feature.properties.est + "<br>" +
                         "<b>Flooding site?</b> " + feature.properties.flooding + "<br>" +
                         "<b>Other Disturbances:</b> " + feature.properties.otherDisturbance + "<br>" +
@@ -229,10 +209,6 @@
             }).addTo(map);
 
             map.fitBounds(bempSites.getBounds());
-
-            ////////////////////////////////////////////////////////////////////////////////////////////
-            //creating the selector control//
-            ////////////////////////////////////////////////////////////////////////////////////////////
 
             //create Leaflet control for selector
             var selector = L.control({
@@ -267,9 +243,7 @@
             //populate site_select element with site IDs for all markers in bempSites
             populateSelect(bempSites, "siteID", "site_select");
 
-            ////////////////////////////////////////////////////////////////////////////////////////////
             //setting up event listeners//
-            ////////////////////////////////////////////////////////////////////////////////////////////
 
             var site_select = L.DomUtil.get("site_select");
 
@@ -299,7 +273,7 @@
                         map.setView(bempSites._layers[e.target.value].getLatLng(), 16);
                 }
 
-                //Dr. Yang edited code to get the siteID from user dropdown click from the map component
+                //Get the siteID from user dropdown click from the map component
                 // e.target.value is the dropdown option index
                 console.log(e.target.value);
                 // get the selected dropdown list correpsponding point latlong
@@ -310,7 +284,6 @@
                 var e = document.getElementById("site_select");
                 var str_user_selected_dropdownItem_text = e.options[e.selectedIndex].text;
                 console.log(str_user_selected_dropdownItem_text);
-                //Dr. Yang edited code to get the siteID from user dropdown click from the map component
 
                 //updated the global variable to the the curently selected siteID
                 // window.siteID_current_dropdown_selected = str_user_selected_dropdownItem_text;
@@ -415,10 +388,8 @@
                 .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 
-            d3.csv("MyWebApp/data/BEMP_Station_Data.csv", type, function (error, data) {
+            d3.csv("data/BEMP_Station_Data.csv", type, function (error, data) {
                 if (error) throw error;
-
-                
 
                 var newData = data.filter(filterCriteria);
 
@@ -552,8 +523,6 @@
                         .call(brush)
                         .call(brush.move, x.range());
 
-           
-    
                     svg.append("rect")
                         .attr("class", "zoom")
                         .attr("width", width)
@@ -578,13 +547,7 @@
                         focusTip2.attr("transform", "translate(" + x(d.Date) + "," + y(d.Rivercfc) + ")");
                         focusTip2.select("text").text(function () { return d.Rivercfc; });
                         focusTip2.select(".x-hover-line").attr("y", height - y(d.Rivercfcs));
-
-
                     }
-
-
-
-
 
                 };
             });
@@ -619,8 +582,6 @@
                 d.Rivercfc = +d.Rivercfc;
                 return d;
             }
-
-            // }; //Dr. Yang added to declare global variable. end of window.onload = function () { 
         </script>
 </body>
 
