@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D Models | Blair Mirka</title>
+  <style>
+    body, html {
+      margin: 0; 
+      height: 100%;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f5f5f5;
+    }
+    .message {
+      font-size: 2rem;
+      color: #555;
+      text-align: center;
+      padding: 1rem 2rem;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    nav.sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    nav.sidebar a {
+      text-decoration: none;
+      color: #005a9c;
+      font-weight: 600;
+    }
+    nav.sidebar a.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    main.content {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+   <div id="wip-banner">
+  🚧 Work in Progress. Some features may not be fully functional yet. Guess You can say there may be a few unintend bugs 🪲!
+</div>
+
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+
+    integrity="sha512-papbNFjR3yVp93pL9TOn6vQhOxD9XxSrklRb6XT2NCPGlJ/XIcNVGfWnO7yCQFEQNVvl5x5heq4zv9joSu8h6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="sidebar" role="navigation" aria-label="Primary navigation">
+  <a href="index.html" >Home</a>
+  <a href="about.html">About</a>
+  <a href="research.html">Research</a>
+  <a href="models.html"class="active">3D Models</a>
+  <a href="cv.html">CV</a>
+  <a href="contact.html">Contact</a>
+<section class="accessibility-controls" aria-label="Accessibility Controls">
+  <!-- Toggle button lives at bottom of sidebar -->
+  <button id="accessibility-toggle"
+          aria-expanded="false"
+          aria-controls="accessibility-menu">
+    Accessibility
+  </button>
+
+  <!-- Options start hidden; appear when button is clicked -->
+  <div id="accessibility-menu" hidden>
+    <label for="font-size-select">Font Size:</label>
+    <select id="font-size-select">
+      <option value="font-small">Small</option>
+      <option value="font-medium" selected>Medium</option>
+      <option value="font-large">Large</option>
+    </select>
+
+    <button id="tts-button">
+      Listen to Content
+    </button>
+  </div>
+</section>
+</nav>
+
+  <main class="content" role="main">
+    <div class="message" aria-live="polite" aria-atomic="true">
+      Coming Soon
+    </div>
+  </main>
+</body>
+</html>

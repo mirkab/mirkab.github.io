@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Blair Mirka</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+    body {
+      margin: 0;
+      height: 100vh;
+      background-image: url(images/Jpegs/Wood.jpg);
+      font-family: sans-serif;
+      display: flex;
+    }
+
+    .content-area {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 600px;
+      background-color: #fff8f0;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+      padding: 50px;
+      font-family: 'La Belle Aurore', cursive;
+      transform: rotate(-1.5deg);
+      position: relative;
+    }
+
+    .card h1 {
+      font-size: 42px;
+      font-family: 'Playfair Display', serif;
+      margin: 0 0 15px;
+      color: #3B4049;
+    }
+
+    .card h2 {
+      font-size: 24px;
+      margin: 0 0 15px;
+      font-weight: normal;
+      color: #3B4049;
+    }
+
+    .card .info {
+      font-size: 22px;
+      line-height: 2;
+      color: #3B4049;
+      font-family: 'Crimson Text', serif;
+    }
+
+    .card .info a {
+      color: #3B4049;
+      text-decoration: none;
+    }
+
+    .card .info a:hover {
+      text-decoration: underline;
+    }
+
+.seal {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  background-color: transparent; /* no extra bg, handled by SVG */
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  transform: rotate(15deg);
+}
+
+.seal:focus {
+  outline: 2px solid #fff;
+}
+
+
+.seal:hover {
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.534);
+}
+
+/* Tooltip container */
+.seal::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 110%;
+  right: 50%;
+  transform: translateX(50%);
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+/* Show tooltip on hover */
+.seal:hover::after,
+.seal:focus::after {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+    .download-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #e4e4e4;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    @media print {
+      body {
+        background: white;
+        display: block;
+      }
+
+      .sidebar,
+      .download-button {
+        display: none;
+      }
+
+      .card {
+        transform: none;
+        box-shadow: none;
+        margin: 2in auto;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+ <div id="wip-banner">
+  🚧 Work in Progress. Some features may not be fully functional yet. Guess You can say there may be a few unintend bugs 🪲!
+</div>
+
+  <nav class="sidebar" role="navigation" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="models.html">3D Models</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html" class="active">Contact</a>
+
+    <section class="accessibility-controls" aria-label="Accessibility Controls">
+      <button id="accessibility-toggle"
+              aria-expanded="false"
+              aria-controls="accessibility-menu">
+        Accessibility
+      </button>
+
+      <div id="accessibility-menu" hidden>
+        <label for="font-size-select">Font Size:</label>
+        <select id="font-size-select">
+          <option value="font-small">Small</option>
+          <option value="font-medium" selected>Medium</option>
+          <option value="font-large">Large</option>
+        </select>
+        <button id="tts-button">Listen to Content</button>
+      </div>
+    </section>
+  </nav>
+
+  
+
+
+<div class="content-area">
+  <div class="card">
+    <h1>Blair Mirka</h1>
+    <h2>Ph.D. Candidate, Geography<br>University of New Mexico</h2>
+    <div class="info">
+      <em>Available for collaborations & freelance projects!</em><br>
+      📍 Albuquerque, NM<br>
+      ✉️ bmirka@unm.edu <br>
+      🌐 <a href="https://mirkab.github.io/" target="_blank">blairmirka.com</a><br>
+      🧬 <a href="https://orcid.org/0000-0003-4564-1242" target="_blank">ORCID: 0000-0003-4564-1242</a>
+    </div>
+    <!-- Seal as button inside the card -->
+    <button class="seal" title="Download as PDF" onclick="window.print()" aria-label="Download as PDF">
+  🪲
+</button>
+  </div>
+</div>
+  </div>
+
+</body>
+</html>

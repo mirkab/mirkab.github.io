@@ -1,0 +1,335 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+/* Reset + base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+  margin: 0;
+  display: flex;
+  background-color: #fdfaf4;
+  background-image: url('images/Jpegs/BBBackground.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #2e2e2e;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav.sidebar {
+  background-color: #f8f6f2;
+  border-right: 1px solid #ccc;
+  padding: 2rem 1rem;
+  width: 220px;
+  height: 100vh;
+  font-family: 'Georgia', serif;
+}
+ .social-links i {
+  font-size: 1.5rem;
+  color: #333;
+}
+nav.sidebar a {
+  color: #2e2e2e;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  display: block;
+  text-decoration: none;
+  border-bottom: 1px solid #e2ddd4;
+  transition: background-color 0.2s ease;
+}
+
+nav.sidebar a:hover {
+  background-color: #eae7e2;
+}
+
+nav.sidebar a.active {
+  background-color: #dcd6cb;
+  border-left: 4px solid #62704d;
+  font-weight: bold;
+}
+
+
+
+/* Accessibility buttons */
+.accessibility-controls {
+  margin-top: auto;         /
+}
+#accessibility-toggle {
+  background-color: #62704d;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+#accessibility-menu {
+  margin-top: 0.75rem;
+}
+
+#accessibility-menu select,
+#accessibility-menu button {
+  margin-bottom: 0.5rem;
+}
+
+/*contrast*/
+body.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Adjust sidebar colors for high contrast */
+body.high-contrast nav.sidebar {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+body.high-contrast nav.sidebar a {
+  color: #fff !important;
+}
+
+body.high-contrast nav.sidebar a:hover,
+body.high-contrast nav.sidebar a.active {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+/* Accessibility buttons */
+body.high-contrast .accessibility-controls button,
+body.high-contrast .accessibility-controls select {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+}
+
+/* Accessibility Font Sizes */
+body.font-small {
+  font-size: 14px;
+}
+
+body.font-medium {
+  font-size: 20px; /* default */
+}
+
+body.font-large {
+  font-size: 40px;
+}
+
+/* Optional: scale headings and buttons too */
+body.font-small h1,
+body.font-small h2,
+body.font-small h3 {
+  font-size: smaller;
+}
+
+body.font-large h1 {
+  font-size: 3rem;
+}
+body.font-large h2 {
+  font-size: 3rem;
+}
+body.font-large h3 {
+  font-size: 3rem;
+}
+
+/* Main Content Area */
+main.content {
+  margin-left: 250px; /* leave space for sidebar */
+  width: calc(100% - 250px); /* fill the rest */
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'EB Garamond', serif;
+  color: #3a2c1a;
+  border-bottom: 1px solid #d4c5a2;
+  margin-bottom: 1rem;
+}
+h1 {
+  font-size: 2.5rem;
+}
+
+/* Research Cards */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.research-card {
+  background: #FAFAFA; /* off-white */
+  border-left: 6px solid #CCCCCC; /* light gray */
+  color: #333333; /* dark gray */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.research-card:hover {
+  border-left-color: #357266; /* soft blue-green */
+  box-shadow: 0 6px 15px rgba(53, 114, 102, 0.3);
+  transform: translateY(-6px);
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  nav.sidebar {
+    position: relative;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  nav.sidebar a {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+  }
+  main.content {
+    padding: 1rem 1.5rem;
+  }
+
+ 
+}
+.intro-text {
+  font-size: 1.2rem; /* increase as needed, e.g., 1.2rem, 1.4rem, 1.6rem */
+  line-height: 1.5;
+}
+
+.social-links a img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(40%);
+  cursor: pointer;
+}
+.social-links a:hover img {
+  filter: none;
+  transform: scale(1.2);
+}
+
+.social-links {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+
+
+.profile-photo img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border: 4px solid #130224; /* beetle purple border for fun */
+}
+
+
+.newspaper-box {
+  font-family: 'Merriweather', serif;
+  background-color: #ffffff; /* ivory paper */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2rem;
+  max-width: 700px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.newspaper-box:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.headline {
+  font-size: 1.6rem;
+  border-bottom: 1px solid #999;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.2rem;
+  color: #2b2b2b;
+  font-weight: 700;
+}
+
+.pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pub-list li {
+  margin-bottom: 1.5rem;
+}
+
+.pub-list a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #2a4a42;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+}
+
+.pub-list a:hover {
+  border-bottom: 1px solid #663399; /* beetle purple */
+  color: #663399;
+}
+
+.pub-meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.3rem;
+  display: block;
+  font-style: italic;
+}
+#map {
+  width: 110%;
+  height: 110%;  
+  border-radius: 8px;
+}
+.map-container {
+  flex: 1 1 60%;           
+  height: 800px;           
+  max-width: 1000px;        
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-right: 30px;      
+}
+
+#wip-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1e1300; /* bright orange */
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+  font-family: sans-serif;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+body {
+  padding-top: 40px; /* to prevent content under banner */
+}
+
+.slideshow {
+  position: relative; 
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

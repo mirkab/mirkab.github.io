@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CV | Blair Mirka</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cv-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+       position: relative;
+  left: 250px; /* or sidebar width */
+  transform: translateX(-50%);
+}
+    
+
+    .cv-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .cv-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .cv-section h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .cv-item {
+      margin-bottom: 1rem;
+    }
+
+    .download-button {
+      display: block;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .download-button a {
+      background-color: #005a9c;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .download-button a:hover {
+      background-color: #003f6b;
+    }
+    .content {
+  min-height: 100vh;
+  overflow-y: visible;
+}
+  </style>
+</head>
+<body>
+     <div id="wip-banner">
+  🚧 Work in Progress. Some features may not be fully functional yet. Guess You can say there may be a few unintend bugs 🪲!
+</div>
+
+  <nav class="sidebar" role="navigation" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="research.html">Research</a>
+    <a href="models.html">3D Models</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
+
+    <section class="accessibility-controls" aria-label="Accessibility Controls">
+      <button id="accessibility-toggle"
+              aria-expanded="false"
+              aria-controls="accessibility-menu">
+        Accessibility
+      </button>
+
+      <div id="accessibility-menu" hidden>
+        <label for="font-size-select">Font Size:</label>
+        <select id="font-size-select">
+          <option value="font-small">Small</option>
+          <option value="font-medium" selected>Medium</option>
+          <option value="font-large">Large</option>
+        </select>
+        <button id="tts-button">Listen to Content</button>
+      </div>
+    </section>
+  </nav>
+
+  <main class="content" tabindex="0">
+    <div class="cv-container">
+      <div class="cv-header">
+        <h1>Blair Mirka</h1>
+        <p>Ph.D. Candidate | Geography | GIS & Remote Sensing</p>
+      </div>
+
+      <div class="download-button">
+        <a href="documents/BlairMirka_CV.pdf" target="_blank" download>📄 Download Full CV</a>
+      </div>
+
+      <section class="cv-section">
+        <h2>Education</h2>
+        <div class="cv-item">
+          <strong>University of New Mexico</strong><br>
+          <em>The Depatment of Geography and Environmental Studies</em><br>
+          Ph.D. in Geography, Minor in Museum Studies<br>
+          Dissertation Title: America’s Next Top Model: 3D Modeling of Museum Specimens for 
+          Automated Ground Beetle Identification  <br>
+          Major Professor: Dr. Christopher Lippitt <br>
+          <em>Expected 2025</em>
+        </div>
+        <div class="cv-item">
+          <strong>San Diego State University </strong><br>
+          <em>The Department of Geography</em><br>
+           MS Geography (GIScience) <br>
+           Thesis Title: Evaluation of Thermal Infrared Imaging from Unmanned Aerial Vehicles for 
+           Arboreal Wildlife Surveillance<br>
+           Major Professor: Dr. Douglas Stow<br> 
+          <em>June 2020</em>
+        </div>
+            <div class="cv-item">
+          <strong>University of Northern Iowa  </strong><br>
+          <em>The Department of Geography</em><br>
+           BS Geography (GIS: Environmental Science and Policy) <br>
+           Graduated Cum Laude<br>
+          <em>May 2018</em>
+        </div>
+      </section>
+      <section class="cv-section">
+        <h2>Certificates</h2>
+        <div class="cv-item">
+        Remote Pilot (Part 107) | Federal Aviation Administration (2024)<br>
+        Geographic Information Systems (GIS) and Cartography | University of Northern Iowa (2018)<br>
+        PADI Open Water Diver | Professional Association of Diving Instructors (2016)<br>
+         </div>
+      </section>
+      <section class="cv-section">
+        <h2>Research Interests</h2>
+        <div class="cv-item">
+          GIS, Remote Sensing, Structure-from-Motion,Computer Vision, Distance Sampling, Digital Specimens, Photogrammetry, Science Communication
+        </div>
+      </section>
+      <section class="cv-section">
+        <h2>Technical Skills</h2>
+        <div class="cv-item">
+          <strong>Programming:</strong> Bootstrap, CSS, HTML, JavaScript (D3, jQuery), Python, R, R Studio, SQL <br>
+          <br>
+          <strong>AI Framework & Tools:</strong> Bootstrap, CSS, HTML, JavaScript (D3, jQuery), Python, R, R Studio, SQL <br>
+          <br>
+          <strong>Software and Programs:</strong> Adobe Illustrator, Adobe Photoshop, Adobe InDesign, Agrisoft Metashape, Arc Catalog, ArcMap, ArcGIS 
+           Online, ArcGIS Pro, Blender, CloudCompare, eMotion 2, ENVI, ERDAS IMAGINE, Helicon Remote, Helicon Focus, Pathfinder Office, Pix4D, MeshLab, Microsoft Office, QGIS, TerrSet, Visual Studio Code 
+        <br>
+        </div>
+      </section>
+      <section class="cv-section">
+        <h2>Publications</h2>
+        <div class="cv-item">
+            <strong>Blair Mirka.</strong>, Christopher Lippitt Labeled 2D images from 3D models of museum specimens; The impact of Structure from Motion modeling parameters on rendered 2D images<em> ZooKeys(In Review, 2025)</em><br>
+            <br>
+            <strong>Mirka, B.</strong>, Lippitt C.D., Harris G.M., Converse R.L., Gurule M., Sesnie S.E., Bulter M.J., Stewart D.R., and Rossman Z.
+            (2024). <a href="https://www.sciencedirect.com/science/article/pii/S1574954125001293" target="_blank">
+             Towards Fully Automated Wildlife Population Density Monitoring and Distance Estimation in Camera Trap Images: A Photogrammetric Approach
+            </a>. <em>Ecological Informatics (2025)</em><br>
+            <br>
+             <strong>Mirka, B.</strong>, Lippitt C.D., Harris G.M., Converse R.L., Gurule M., Sesnie S.E., Bulter M.J., Stewart D.R., and Rossman Z.
+            (2024). <a href="https://www.sciencedirect.com/science/article/pii/S1574954125001293" target="_blank">
+             Towards Fully Automated Wildlife Population Density Monitoring and Distance Estimation in Camera Trap Images: A Photogrammetric Approach
+            </a>. <em>Ecological Informatics (2025)</em><br>
+            <br>
+            Theodros Woldeyohannes, Yan Lin, Xiaoyang Zhang, John Doyle, Margaret Eggers, Liu Zhuoming, Al Ekram Hridoy, El Mehdi Bimaghra, Tadiwanashe Bizure, <strong>Blair Mirka</strong>, Latasha James, Joseph Hoover. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5017036" target="_blank">Waste fire surveillance using remote sensing and air contaminant monitoring</a> <em>Journal of Waste Management. (In Review, 2025)</em>  
+            <br>
+            <br>
+            <strong>Mirka, B.A.</strong>, Stowe, D., Paulus, G., Loerch, A., Coulter, L., An, L., Lewison, R., and Pfülger, L. <a href="https://pubmed.ncbi.nlm.nih.gov/35715711/" target="_blank"> Evaluation of Thermal Infrared Imaging from Unmanned Aerial Vehicles for Arboreal Wildlife Surveillance.</a><em> Environmental Monitoring and 
+            Assessment</em>. March 2022 <br>    
+
+        </div>
+      </section>
+      <section class="cv-section">
+        <h2>Scholarships and Awards</h2>
+        <div class="cv-item">
+          2025 Doctoral Conference Presentation Award | <em> University of New Mexico</em> <br>
+          2024 Selected Participant, Beetlepalooza, Imageomics Institute | <em> The Ohio State University </em> <br>
+          2023 Levings Graduate Fellowship in Science and Technology  | <em> University of New Mexico</em> <br>
+          2023 ACM SIGSPATIAL NSF Travel Award | <em>ACM SIGSPATIAL</em> <br>
+          2023 Rodman E. Snead Scholarship | <em>University of New Mexico</em> <br>
+          <br>
+        </div>
+      <section class="cv-section">
+              <section class="cv-section">
+        <h2>Leadership and Service Roles</h2>
+        <div class="cv-item">
+          ASPRS Student Chapter Secretary (2024 - Present) | <em>University of New Mexico</em> <br>
+          ASPIRE Center: ASPIREational Talk Coordinator (2022 - 2023)  | <em>University of New Mexico</em> <br>
+          ASPIRE Center: ASPIRE Open House Coordinator (2022 - 2023) | <em>The University of New Mexico</em> <br>
+          ASPRS Student Chapter President and Founder (2021- 2023) | <em>The University of New Mexico </em><br>
+          Graduate Student Computing Liaison (2019-2022) | <em>San Diego State University</em>  <br>
+          <br>
+        </div>
+      <section class="cv-section">
+        <h2>Reseach Experience</h2>
+        <div class="cv-item">
+          <strong>UAS Services Manager</strong><br>
+          ASPIRE Center, University of New Mexico | 2024–Present<br>
+          <br>
+          <strong>Museum Tech Conservator - Operational </strong><br>
+          New Mexico Museum of Natural History and Science | 2023-2024<br>
+          <br>
+          <strong>Lab Manager and Research Assistant</strong><br>
+          ASPIRE Center, University of New Mexico | 2023–2024<br>
+          <br>
+          <strong>Digitizatin and 3D Modeling Consultant</strong><br>
+          New Mexico Museum of Natural History and Science | 2023<br>
+          <br>
+          <strong>NSF Complex Human-Environmental Systems Graduate Research Assistant</strong><br>
+          San Diego State University | 2018-2020<br>
+        </div>
+        
+        <br>
+        
+      <section class="cv-section">
+        <h2>Teaching Experience</h2>
+        <div class="cv-item">
+          <strong>Digital Approaches in Museums; MSST 485/585</strong><br>
+          <em>Instructor of Record</em><br>
+          UNM Dept. of Museum Studies | Spring 2025<br>
+          <br>
+          <strong>Home Planet: Land, Water, Life: Intro to Physical Geography; GEOG 1160</strong><br>
+          <em>Instructor of Record</em><br>
+          UNM Dept. of Geography and Environmental Studies | Fall 2024<br>
+          <br>
+          <strong>Digital Approaches in Museums; MSST 485/585</strong><br>
+          <em>Course Devloper, Instructor of Record</em><br>
+          UNM Dept. of Museum Studies | Fall 2023<br>
+
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
