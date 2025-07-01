@@ -2,110 +2,257 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>3D Models | Blair Mirka</title>
+  <title>Research | Blair Mirka</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body, html {
-      margin: 0; 
-      height: 100%;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #f5f5f5;
+  
+/* Lightbox base styling */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  object-fit: contain;
+  background: white;
+  padding: 10px;
+}
+
+  
+
+    /* Main Content */
+    main.content {
+      margin-left: 0px;
+      background-color: rgba(224, 222, 219, 0.853);
+      padding: 2rem;
+      width: calc(100% - 250px);
+      overflow-y: auto;
+      height: 100vh;
+      box-sizing: border-box;
     }
-    .message {
-      font-size: 2rem;
-      color: #555;
-      text-align: center;
-      padding: 1rem 2rem;
-      border: 2px solid #ccc;
-      border-radius: 8px;
+
+    /* Header */
+    h1 {
       background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
-    nav.sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 250px;
-      background: #fff;
-      padding: 1rem;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+
+    /* Tabs container */
+    .tabs {
       display: flex;
-      flex-direction: column;
       gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
     }
-    nav.sidebar a {
-      text-decoration: none;
-      color: #005a9c;
-      font-weight: 600;
+    .tab-button {
+      background: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      flex-grow: 1;
+      text-align: center;
     }
-    nav.sidebar a.active {
+    .tab-button:hover {
+      background: #8e8e8e;
+      color: white;
       font-weight: bold;
+    }
+    .tab-button.active {
+      background: #014325;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Tab content */
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-height: 70vh;
+      overflow-y: auto;
+      font-size: 1.5rem;
+  line-height: 1.7; /* optional: improve readability */
+      max-width: 2000px; /* or wider */
+      margin: 0 auto;
+     padding: 20px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+   .tab-content img {
+  flex: 1 1 50%; /* image takes about half the width */
+  max-width: 100%;
+}
+  /* Images grid in tab - three equal squares */
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-items: center; /* center images in each cell */
+}
+
+.images-grid img {
+  width: 100%;       /* fill grid cell width */
+  aspect-ratio: 1 / 1; /* keep image square */
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  max-width: 700px;  /* optional max width */
+}
+    /* Publications list */
+    .publications {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+    }
+    .publications li {
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+    .publications li a {
+      color: #000000;
+      text-decoration: none;
+    }
+    .publications li a:hover {
       text-decoration: underline;
     }
-    main.content {
-      margin-left: 250px;
-      width: calc(100% - 250px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+
   </style>
 </head>
 <body>
-   <div id="wip-banner">
-  🚧 Work in Progress. Some features may not be fully functional yet. Guess You can say there may be a few unintended bugs 🪲!
+    <div id="wip-banner">
+  🚧 Work in Progress. Some features may not be fully functional yet. Guess You can say there may be a few unintend bugs 🪲!
 </div>
+  <nav class="sidebar" role="navigation" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="research.html" class="active">Research</a>
+    <a href="models.html">3D Models</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
- <link
+  <main class="content" role="main" aria-live="polite" aria-atomic="true">
+    <h1>Research Projects</h1>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-button active" role="tab" aria-selected="true" aria-controls="dissertation" id="tab-dissertation">Dissertation</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="camera-trap" id="tab-camera-trap">Camera Trap Distance Estimation</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="uav-thermal" id="tab-uav-thermal">UAV Thermal Detection of Primates</button>
+      
+    </div>
+
+    <section id="dissertation" class="tab-content active" role="tabpanel" aria-labelledby="tab-dissertation" tabindex="0">
+      <div class="images-grid">
+        <img src="images/Jpegs/Fig_Beetles.jpg" alt="Pinned Beetle Specimens" />
+        <img src="images/Jpegs/AI beetles.jpg" alt="AI Model Output tdentifing beetles" />
+        <img src="images/Jpegs/3D Models.jpg" alt="3D models of pinned specimens vs the Raw image" />
+      </div>
+      <p>This research explores the use of 3D models generated from museum specimens as synthetic training data for computer vision, with a focus on ground beetles (Carabidae). Using Structure from Motion, a photogrammetric modeling technique, this research seeks to incorporate rare and elusive morphologies into training datasets to improve species identification accuracy. This work focuses on improving biodiversity monitoring and automated species recognition, supporting conservation efforts and ecological studies in remote or challenging environments.</p>
+      <h3> Publications</h3>
+      <ul class="publications">
+        <li><a href="#" target="_blank" rel="noopener noreferrer">Mirka et al. (2025). Labeled 2D images from 3D models of museum specimens; The impact of Structure from Motion modeling parameters on rendered 2D images.<em> Zookeys (In Review)</em> <i class="fa fa-external-link-alt"></i></a></li>
+      </ul>
+    </section>
+
+    <section id="camera-trap" class="tab-content" role="tabpanel" aria-labelledby="tab-camera-trap" tabindex="0">
+      <div class="images-grid">
+        <img src="images/Jpegs/1-s2.0-S1574954125001293-gr3.jpg" alt="Depth Map Image" />
+        <img src="images/Jpegs/1-s2.0-S1574954125001293-gr2_lrg.jpg" alt="Imaging Pattern and Site Dynamics" />
+        <img src="images/Jpegs/1-s2.0-S1574954125001293-gr4_lrg.jpg" alt="Animals in Camera Trap images with Bounding Boxes" />
+      </div>
+      <p>This research explores the use of Structure from Motion to create distance estimations for wildlife sighting from camera trap images. When coupled with automated species identification through computer vision, this presents a clear pathway to fully automated distance estimations, a critical step in acquiring animal abundance estimations for repeatable and cost-effective survey data. </p>
+      <h3>Selected Publications</h3>
+      <ul class="publications">
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S1574954125001293#f001" target="_blank" rel="noopener noreferrer">Mirka et al.,  (2025).A photogrammetric approach to the estimation of distance to animals in camera trap images. <i class="fa fa-external-link-alt"></i></a></li>
+      </ul>
+    </section>
+
+    <section id="uav-thermal" class="tab-content" role="tabpanel" aria-labelledby="tab-uav-thermal" tabindex="0">
+      <div class="images-grid">
+        <img src="images/Jpegs/flir_20190801T064549.jpg" alt="Thermal Monkey Image" />
+        <img src="images/Jpegs/A-comparison-of-images-in-a-time-sequence-The-first-image-a-compared-to-the-second_W640.jpg" alt="UAV thermal image 2" />
+        <img src="images/Jpegs/PXL_20250402_132412092.jpg" alt="UAV thermal image 1" />
+      </div>
+      <p>This project explores the use of UAV-mounted thermal sensors for detecting primates in dense forest environments, combining remote sensing and photogrammetric techniques.</p>
+      <h3>Selected Publications</h3>
+      <ul class="publications">
+        <li><a href="https://www.researchgate.net/publication/361384951_Evaluation_of_thermal_infrared_imaging_from_uninhabited_aerial_vehicles_for_arboreal_wildlife_surveillance" target="_blank" rel="noopener noreferrer">Mirka et al. (2021). Evaluation of thermal infrared imaging from uninhabited aerial vehicles for arboreal wildlife surveillance <i class="fa fa-external-link-alt"></i></a></li>
+      </ul>
+    </section>
+
+    <section id="other" class="tab-content" role="tabpanel" aria-labelledby="tab-other" tabindex="0">
+      <p>Additional projects and research activities will be listed here.</p>
+    </section>
+  </main>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        // Remove active class & aria-selected from all tabs
+        tabs.forEach(t => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+
+        // Hide all tab content
+        tabContents.forEach(tc => tc.classList.remove("active"));
+
+        // Activate clicked tab and corresponding content
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        const target = tab.getAttribute("aria-controls");
+        document.getElementById(target).classList.add("active");
+        document.getElementById(target).focus();
+      });
+    });
+  
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.images-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+  }
+
+
+  </script>
+  <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-
-    integrity="sha512-papbNFjR3yVp93pL9TOn6vQhOxD9XxSrklRb6XT2NCPGlJ/XIcNVGfWnO7yCQFEQNVvl5x5heq4zv9joSu8h6A=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<nav class="sidebar" role="navigation" aria-label="Primary navigation">
-  <a href="index.html" >Home</a>
-  <a href="about.html">About</a>
-  <a href="research.html"class="active">Research</a>
-  <a href="models.html">3D Models</a>
-  <a href="cv.html">CV</a>
-  <a href="contact.html">Contact</a>
-<section class="accessibility-controls" aria-label="Accessibility Controls">
-  <!-- Toggle button lives at bottom of sidebar -->
-  <button id="accessibility-toggle"
-          aria-expanded="false"
-          aria-controls="accessibility-menu">
-    Accessibility
-  </button>
-
-  <!-- Options start hidden; appear when button is clicked -->
-  <div id="accessibility-menu" hidden>
-    <label for="font-size-select">Font Size:</label>
-    <select id="font-size-select">
-      <option value="font-small">Small</option>
-      <option value="font-medium" selected>Medium</option>
-      <option value="font-large">Large</option>
-    </select>
-
-    <button id="tts-button">
-      Listen to Content
-    </button>
-  </div>
-</section>
-</nav>
-
-  <main class="content" role="main">
-    <div class="message" aria-live="polite" aria-atomic="true">
-      Coming Soon
-    </div>
-  </main>
 </body>
 </html>
