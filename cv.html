@@ -62,13 +62,11 @@
   </style>
 </head>
 <body>
-     <div id="wip-banner">
-  🚧 Work in Progress. Some features may not be fully functional yet. Guess You can say there may be a few unintend bugs 🪲!
-</div>
+
 
   <nav class="sidebar" role="navigation" aria-label="Primary navigation">
     <a href="index.html">Home</a>
-    <a href="about.html" >About</a>
+    <a href="about.html">About</a>
     <a href="research.html">Research</a>
     <a href="models.html">3D Models</a>
     <a href="cv.html"class="active">CV</a>
@@ -97,7 +95,7 @@
     <div class="cv-container">
       <div class="cv-header">
         <h1>Blair Mirka</h1>
-        <p>Ph.D. Candidate | Geography | GIS & Remote Sensing</p>
+        <p>Ph.D. | Geography | GIS & Remote Sensing</p>
       </div>
 
       <div class="download-button">
@@ -113,7 +111,7 @@
           Dissertation Title: America’s Next Top Model: 3D Modeling of Museum Specimens for 
           Automated Ground Beetle Identification  <br>
           Major Professor: Dr. Christopher Lippitt <br>
-          <em>Expected 2025</em>
+          <em>Fall 2025</em>
         </div>
         <div class="cv-item">
           <strong>San Diego State University </strong><br>
@@ -161,14 +159,9 @@
       <section class="cv-section">
         <h2>Publications</h2>
         <div class="cv-item">
-            <strong>Blair Mirka.</strong>, Christopher Lippitt Labeled 2D images from 3D models of museum specimens; The impact of Structure from Motion modeling parameters on rendered 2D images<em> ZooKeys(In Review, 2025)</em><br>
+            <strong>Blair Mirka.</strong>, Christopher Lippitt <a href="https://pubmed.ncbi.nlm.nih.gov/41584869/" target="_blank">Labeled 2D images from 3D models of museum specimens; The impact of Structure from Motion modeling parameters on rendered 2D images</a><em> ZooKeys(2025)</em><br>
             <br>
             <strong>Mirka, B.</strong>, Lippitt C.D., Harris G.M., Converse R.L., Gurule M., Sesnie S.E., Bulter M.J., Stewart D.R., and Rossman Z.
-            (2024). <a href="https://www.sciencedirect.com/science/article/pii/S1574954125001293" target="_blank">
-             Towards Fully Automated Wildlife Population Density Monitoring and Distance Estimation in Camera Trap Images: A Photogrammetric Approach
-            </a>. <em>Ecological Informatics (2025)</em><br>
-            <br>
-             <strong>Mirka, B.</strong>, Lippitt C.D., Harris G.M., Converse R.L., Gurule M., Sesnie S.E., Bulter M.J., Stewart D.R., and Rossman Z.
             (2024). <a href="https://www.sciencedirect.com/science/article/pii/S1574954125001293" target="_blank">
              Towards Fully Automated Wildlife Population Density Monitoring and Distance Estimation in Camera Trap Images: A Photogrammetric Approach
             </a>. <em>Ecological Informatics (2025)</em><br>
@@ -203,7 +196,7 @@
           <br>
         </div>
       <section class="cv-section">
-        <h2>Research Experience</h2>
+        <h2>Reseach Experience</h2>
         <div class="cv-item">
           <strong>UAS Services Manager</strong><br>
           ASPIRE Center, University of New Mexico | 2024–Present<br>
@@ -242,36 +235,5 @@
       </section>
     </div>
   </main>
-      <script> // Accessibility toggle
-  const toggleBtn = document.getElementById('accessibility-toggle');
-  const menu = document.getElementById('accessibility-menu');
-
-  toggleBtn.addEventListener('click', () => {
-    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', !expanded);
-    menu.hidden = expanded;
-  });
-
-  document.getElementById('font-size-select').addEventListener('change', (e) => {
-  document.body.classList.remove('font-small', 'font-medium', 'font-large');
-  document.body.classList.add(e.target.value);
-  });
-
-
-  // Contrast toggle
-  document.getElementById('contrast-toggle').addEventListener('click', (e) => {
-    const highContrast = document.body.classList.toggle('high-contrast');
-    e.target.setAttribute('aria-pressed', highContrast);
-  });
-
-  // Text-to-speech
-  document.getElementById('tts-button').addEventListener('click', () => {
-    const main = document.querySelector('main.content');
-    if (!main) return;
-    if (speechSynthesis.speaking) return speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(main.innerText);
-    speechSynthesis.speak(utterance);
-  });</script>
 </body>
 </html>
