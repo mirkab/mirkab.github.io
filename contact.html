@@ -1,4 +1,4 @@
-d<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -150,10 +150,6 @@ d<!DOCTYPE html>
   </style>
 </head>
 <body>
- <div id="wip-banner">
-  🚧 Work in Progress. Some features may not be fully functional yet. Guess You can say there may be a few unintended bugs 🪲!
-</div>
-
   <nav class="sidebar" role="navigation" aria-label="Primary navigation">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -202,6 +198,36 @@ d<!DOCTYPE html>
   </div>
 </div>
   </div>
+<script>// Accessibility toggle
+  const toggleBtn = document.getElementById('accessibility-toggle');
+  const menu = document.getElementById('accessibility-menu');
 
+  toggleBtn.addEventListener('click', () => {
+    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', !expanded);
+    menu.hidden = expanded;
+  });
+
+  document.getElementById('font-size-select').addEventListener('change', (e) => {
+  document.body.classList.remove('font-small', 'font-medium', 'font-large');
+  document.body.classList.add(e.target.value);
+  });
+
+
+  // Contrast toggle
+  document.getElementById('contrast-toggle').addEventListener('click', (e) => {
+    const highContrast = document.body.classList.toggle('high-contrast');
+    e.target.setAttribute('aria-pressed', highContrast);
+  });
+
+  // Text-to-speech
+  document.getElementById('tts-button').addEventListener('click', () => {
+    const main = document.querySelector('main.content');
+    if (!main) return;
+    if (speechSynthesis.speaking) return speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(main.innerText);
+    speechSynthesis.speak(utterance);
+  });</script>
 </body>
 </html>
