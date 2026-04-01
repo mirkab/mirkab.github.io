@@ -2,15 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blair Mirka | Home</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-
-    integrity="sha512-papbNFjR3yVp93pL9TOn6vQhOxD9XxSrklRb6XT2NCPGlJ/XIcNVGfWnO7yCQFEQNVvl5x5heq4zv9joSu8h6A=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-papbNFjR3yVp93pL9TOn6vQhOxD9XxSrklRb6XT2NCPGlJ/XIcNVGfWnO7yCQFEQNVvl5x5heq4zv9joSu8h6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,126 +18,101 @@
   <a href="models.html">3D Models</a>
   <a href="cv.html">CV</a>
   <a href="contact.html">Contact</a>
-<section class="accessibility-controls" aria-label="Accessibility Controls">
-  <!-- Toggle button lives at bottom of sidebar -->
-  <button id="accessibility-toggle"
-          aria-expanded="false"
-          aria-controls="accessibility-menu">
-    Accessibility
-  </button>
 
-  <!-- Options start hidden; appear when button is clicked -->
-  <div id="accessibility-menu" hidden>
-    <label for="font-size-select">Font Size:</label>
-    <select id="font-size-select">
-      <option value="font-small">Small</option>
-      <option value="font-medium" selected>Medium</option>
-      <option value="font-large">Large</option>
-    </select>
-
-    <button id="tts-button">
-      Listen to Content
+  <section class="accessibility-controls" aria-label="Accessibility Controls">
+    <button id="accessibility-toggle" aria-expanded="false" aria-controls="accessibility-menu">
+      Accessibility
     </button>
-  </div>
-</section>
-
-
+    <div id="accessibility-menu" hidden>
+      <label for="font-size-select">Font Size:</label>
+      <select id="font-size-select">
+        <option value="font-small">Small</option>
+        <option value="font-medium" selected>Medium</option>
+        <option value="font-large">Large</option>
+      </select>
+      <button id="tts-button">Listen to Content</button>
+    </div>
+  </section>
 </nav>
-<section class="intro-section" style="
-  display: flex; 
-  align-items: flex-start; 
-  justify-content: center;
-  gap: 2rem; 
-  width: 900px;                         /* Fixed width */
-  margin: 4rem 30rem 4rem auto;          /* Push to the right */
-  padding: 5rem;
-  background-color: rgba(255, 255, 255, 0.918); 
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  height: 700px;
-">
 
+<div class="intro-wrapper">
+  <main class="intro-card" tabindex="0" aria-label="Introduction">
 
-    <!-- Left: Profile photo -->
-    <div class="profile-photo" style="flex-shrink: 0;">
-      <img src="images/Jpegs/PXL_20230610_144133830.jpg" alt="Photo of Blair Mirka"/>
+    <!-- Profile photo -->
+    <div class="profile-photo">
+      <img src="images/Jpegs/PXL_20230610_144133830.jpg" alt="Photo of Blair Mirka" />
     </div>
 
-    <!-- Right: Intro text + social links -->
-    <div class="intro-text" style="flex-grow: 3;">
-      <h1>Blair Mirka </h1>
-      <h2> Ph.D. Candidate</h2>
-      <p> Welcome to my website! I hold a Ph.D. from the University of New Mexico, where my work focused on GIS, Remote Sensing, Computer Vision, and Digital Museum Studies. This site showcases my research, projects, and professional work using geospatial analysis, machine learning, and remote sensing to better understand complex spatial systems. Take a load off and stay awhile!</p>
+    <!-- Intro text + social links -->
+    <div class="intro-text">
+      <h1>Blair Mirka</h1>
+      <h2>Ph.D. Candidate</h2>
+      <p>Welcome to my website! I hold a Ph.D. from the University of New Mexico, where my work focused on GIS, Remote Sensing, Computer Vision, and Digital Museum Studies. This site showcases my research, projects, and professional work using geospatial analysis, machine learning, and remote sensing to better understand complex spatial systems. Take a load off and stay awhile!</p>
 
-      <!-- Social Links -->
-      <div class="social-links" style="margin-top: 1rem; display: flex; gap: 1rem;">
+      <div class="social-links">
         <a href="https://github.com/mirkab" target="_blank" aria-label="GitHub" rel="noopener noreferrer">
-         <img src="images/social-icons/GitHub.svg" alt="GitHub" />
+          <img src="images/social-icons/GitHub.svg" alt="GitHub" />
         </a>
-        <a href="https://www.linkedin.com/in/blair-mirka/" target="_blank" aria-label="Linkedin" rel="noopener noreferrer">
-         <img src="images/social-icons/LinkedIn.svg" alt="GitHub" />
+        <a href="https://www.linkedin.com/in/blair-mirka/" target="_blank" aria-label="LinkedIn" rel="noopener noreferrer">
+          <img src="images/social-icons/LinkedIn.svg" alt="LinkedIn" />
         </a>
-        <a href="https://sketchfab.com/blair.a.mirka" target="_blank" aria-label="Linkedin" rel="noopener noreferrer">
-         <img src="images/social-icons//SketchFab.svg" alt="GitHub"  />
-        </a>  
-        <a href="https://www.researchgate.net/profile/Blair-Mirka?ev=hdr_xprf" target="_blank" aria-label="Linkedin" rel="noopener noreferrer">
-         <img src="images/social-icons/ResearchGate.svg" alt="GitHub"  />
-        </a> 
-        
+        <a href="https://sketchfab.com/blair.a.mirka" target="_blank" aria-label="Sketchfab" rel="noopener noreferrer">
+          <img src="images/social-icons/SketchFab.svg" alt="Sketchfab" />
+        </a>
+        <a href="https://www.researchgate.net/profile/Blair-Mirka?ev=hdr_xprf" target="_blank" aria-label="ResearchGate" rel="noopener noreferrer">
+          <img src="images/social-icons/ResearchGate.svg" alt="ResearchGate" />
+        </a>
       </div>
     </div>
+
+    <!-- Recent Publications -->
     <div class="newspaper-box">
-  <h2 class="headline">Recent Publications</h2>
-  <ul class="pub-list">
-    <li>
-      <a href="https://www.sciencedirect.com/science/article/pii/S1574954125001293?via%3Dih" target="_blank" rel="noopener noreferrer">
-        Photogrammetric Approach to the Estimation of Distance to Animals in Camera Trap Images
-      </a>
-      <span class="pub-meta">2025 • Ecological Informatics</span>
-    </li>
-    <li>
-      <a href="https://www.researchgate.net/publication/361384951_Evaluation_of_thermal_infrared_imaging_from_uninhabited_aerial_vehicles_for_arboreal_wildlife_surveillance" target="_blank" rel="noopener noreferrer">
-        Evaluation of thermal infrared imaging from uninhabited aerial vehicles for arboreal wildlife surveillance
-      </a>
-      <span class="pub-meta">2022 • Environmental Monitoring and Assessment</span>
-    </li>
-    
-  </ul>
+      <h2 class="headline">Recent Publications</h2>
+      <ul class="pub-list">
+        <li>
+          <a href="https://www.sciencedirect.com/science/article/pii/S1574954125001293?via%3Dih" target="_blank" rel="noopener noreferrer">
+            Photogrammetric Approach to the Estimation of Distance to Animals in Camera Trap Images
+          </a>
+          <span class="pub-meta">2025 · Ecological Informatics</span>
+        </li>
+        <li>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/41584869/" target="_blank" rel="noopener noreferrer">
+            Labeled 2D Images from 3D Models of Museum Specimens
+          </a>
+          <span class="pub-meta">2025 · ZooKeys</span>
+        </li>
+        <li>
+          <a href="https://www.researchgate.net/publication/361384951_Evaluation_of_thermal_infrared_imaging_from_uninhabited_aerial_vehicles_for_arboreal_wildlife_surveillance" target="_blank" rel="noopener noreferrer">
+            Evaluation of Thermal Infrared Imaging from UAVs for Arboreal Wildlife Surveillance
+          </a>
+          <span class="pub-meta">2022 · Environmental Monitoring and Assessment</span>
+        </li>
+      </ul>
+    </div>
+
+  </main>
 </div>
 
-  </section>
-</main>
 <script>
-  // Accessibility toggle
   const toggleBtn = document.getElementById('accessibility-toggle');
   const menu = document.getElementById('accessibility-menu');
 
   toggleBtn.addEventListener('click', () => {
     const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', !expanded);
+    toggleBtn.setAttribute('aria-expanded', String(!expanded));
     menu.hidden = expanded;
   });
 
-  document.getElementById('font-size-select').addEventListener('change', (e) => {
-  document.body.classList.remove('font-small', 'font-medium', 'font-large');
-  document.body.classList.add(e.target.value);
+  document.getElementById('font-size-select').addEventListener('change', e => {
+    document.body.classList.remove('font-small', 'font-medium', 'font-large');
+    document.body.classList.add(e.target.value);
   });
 
-
-  // Contrast toggle
-  document.getElementById('contrast-toggle').addEventListener('click', (e) => {
-    const highContrast = document.body.classList.toggle('high-contrast');
-    e.target.setAttribute('aria-pressed', highContrast);
-  });
-
-  // Text-to-speech
   document.getElementById('tts-button').addEventListener('click', () => {
-    const main = document.querySelector('main.content');
+    const main = document.querySelector('.intro-card');
     if (!main) return;
     if (speechSynthesis.speaking) return speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(main.innerText);
-    speechSynthesis.speak(utterance);
+    speechSynthesis.speak(new SpeechSynthesisUtterance(main.innerText));
   });
 </script>
 </body>
