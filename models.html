@@ -4,371 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3D Models | Blair Mirka</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-papbNFjR3yVp93pL9TOn6vQhOxD9XxSrklRb6XT2NCPGlJ/XIcNVGfWnO7yCQFEQNVvl5x5heq4zv9joSu8h6A=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-
-    /* ─── Override style.css body flex for this page ─────────────── */
-    body {
-      display: block; /* style.css sets flex which fights the layout */
-    }
-
-    /* ─── WIP banner ─────────────────────────────────────────────── */
-    #wip-banner {
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-    }
-
-    /* ─── Nav: horizontal on mobile, vertical sidebar on desktop ─── */
-    nav.sidebar {
-      position: fixed;
-      top: 40px; /* below WIP banner */
-      left: 0;
-      width: 220px;
-      height: calc(100vh - 40px);
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ─── Main: sits to the right of the fixed sidebar ───────────── */
-    main.content {
-      margin-left: 220px;
-      padding: 2rem;
-      min-height: 100vh;
-      /* No background — let the page background show through */
-      background: none;
-    }
-
-    /* ─── White overlay: tight around the content only ───────────── */
-    .content-wrapper {
-      background-color: #ffffffc2;
-      border-radius: 8px;
-      padding: 1.5rem 2rem;
-      display: inline-block;   /* shrinks to fit content width */
-      min-width: min(100%, 300px);
-      max-width: 100%;
-    }
-
-    main.content h1 {
-      margin: 0 0 0.25rem;
-      font-size: 1.8rem;
-    }
-
-    .page-intro {
-      color: #555;
-      margin: 0 0 2rem;
-      font-size: 1rem;
-    }
-
-    /* ─── Models grid ────────────────────────────────────────────── */
-    .models-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    /* 2 columns on medium screens */
-    @media (max-width: 1100px) and (min-width: 769px) {
-      .models-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-
-
-    /* ─── Model card ─────────────────────────────────────────────── */
-    .model-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-
-    /* Responsive 16:9 iframe wrapper */
-    .model-embed {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      height: 0;
-    }
-
-    .model-embed iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .model-info {
-      padding: 1rem 1.25rem;
-    }
-
-    .model-info h2 {
-      margin: 0 0 0.4rem;
-      font-size: 1.1rem;
-      border-bottom: none;
-    }
-
-    .model-info p {
-      margin: 0 0 0.75rem;
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    .model-info a.sketchfab-link {
-      font-size: 0.85rem;
-      color: #1a5276;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .model-info a.sketchfab-link:hover { text-decoration: underline; }
-
-    /* ─── Accessibility controls ──────────────────────────────────── */
-    .accessibility-controls {
-      margin-top: auto;
-      padding-top: 1rem;
-    }
-
-    #accessibility-toggle {
-      cursor: pointer;
-      padding: 0.3rem 0.6rem;
-      font-size: 0.9rem;
-      border: 1px solid #bbb;
-      border-radius: 4px;
-      background: white;
-      width: 100%;
-    }
-
-    #accessibility-menu {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 0.75rem;
-      margin-top: 0.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    #accessibility-menu[hidden] { display: none; }
-
-    /* ─── Mobile (≤ 768px): collapse sidebar to top bar ──────────── */
-    @media (max-width: 768px) {
-      nav.sidebar {
-        position: relative;
-        top: 0;
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 0.75rem 1rem;
-        gap: 0.5rem;
-        overflow-x: auto;
-      }
-
-      main.content {
-        margin-left: 0;
-        padding: 1rem;
-      }
-
-      .content-wrapper {
-        display: block;
-      }
-
-      .models-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
 
+<nav class="sidebar" role="navigation" aria-label="Primary navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="research.html">Research</a>
+  <a href="models.html" class="active">3D Models</a>
+  <a href="cv.html">CV</a>
+  <a href="contact.html">Contact</a>
 
-  <nav class="sidebar" role="navigation" aria-label="Primary navigation">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="research.html">Research</a>
-    <a href="models.html" class="active">3D Models</a>
-    <a href="cv.html">CV</a>
-    <a href="contact.html">Contact</a>
-
-    <section class="accessibility-controls" aria-label="Accessibility Controls">
-      <button id="accessibility-toggle"
-              aria-expanded="false"
-              aria-controls="accessibility-menu">
-        Accessibility
-      </button>
-
-      <div id="accessibility-menu" hidden>
-        <label for="font-size-select">Font Size:</label>
-        <select id="font-size-select">
-          <option value="font-small">Small</option>
-          <option value="font-medium" selected>Medium</option>
-          <option value="font-large">Large</option>
-        </select>
-        <button id="tts-button">Listen to Content</button>
-      </div>
-    </section>
-  </nav>
-
-  <main class="content" role="main">
-    <div class="content-wrapper">
-    <h1>3D Models</h1>
-    <p class="page-intro">Interactive 3D models from my research. Click and drag to explore each model.</p>
-
-    <div class="models-grid">
-
-      <!--
-        ═══════════════════════════════════════════════════════════════
-        HOW TO ADD A MODEL:
-        1. Go to your model on Sketchfab
-        2. Click "Share" → "Embed" and copy the model ID from the URL
-           e.g. https://sketchfab.com/3d-models/my-model-abc123  → ID is "abc123"
-        3. Copy one of the cards below and paste it inside .models-grid
-        4. Replace the model ID in the iframe src URL
-        5. Update the title, description, and Sketchfab link
-        ═══════════════════════════════════════════════════════════════
-      -->
-
-      <!-- ── CARD 1 — replace MODEL_ID_HERE ── -->
-      <div class="model-card">
-        <div class="model-embed">
-          <iframe title="Model 1"
-            src="https://sketchfab.com/3d-models/ellipsoptera-nevadica-16f729e63d28401f83c73b1adf962b26/embed?autostart=0&ui_theme=dark"
-            allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
-        </div>
-        <div class="model-info">
-          <h2>Ellipsoptera nevadica</h2>
-          <p>Model of Cicindela scutellaris from the entomology collections at the Museum of Southwestern Biology on the campus of the University of New Mexico</p>
-          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/ellipsoptera-nevadica-16f729e63d28401f83c73b1adf962b26" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
-        </div>
-      </div>
-
-      <!-- ── CARD 2 — replace MODEL_ID_HERE ── -->
-      <div class="model-card">
-        <div class="model-embed">
-          <iframe title="Model 2"
-            src="https://sketchfab.com/3d-models/eunota-cicumpicta-b3eccc66a0844f56bfe5d99f7fe567d1/embed?autostart=0&ui_theme=dark"
-            allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
-        </div>
-        <div class="model-info">
-          <h2>Eunota cicumpicta</h2>
-          <p>Model of Eunota cicumpicta from the entomology collections at the Museum of Southwestern Biology on the campus of the University of New Mexico</p>
-          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/eunota-cicumpicta-b3eccc66a0844f56bfe5d99f7fe567d1" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
-        </div>
-      </div>
-
-      <!-- ── CARD 3 — replace MODEL_ID_HERE ── -->
-      <div class="model-card">
-        <div class="model-embed">
-          <iframe title="Model 3"
-            src="https://sketchfab.com/3d-models/cicindela-tranquebarica-780ed6c6558741539f54c22452f9891d/embed?autostart=0&ui_theme=dark"
-            allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
-        </div>
-        <div class="model-info">
-          <h2>Cicindela tranquebarica</h2>
-          <p>Model of Cicindela tranquebarica from the entomology collections at the Museum of Southwestern Biology on the campus of the University of New Mexico</p>
-          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/cicindela-tranquebarica-780ed6c6558741539f54c22452f9891d" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
-        </div>
-      </div>
-
-      <!-- ── CARD 4 — replace MODEL_ID_HERE ── -->
-      <div class="model-card">
-        <div class="model-embed">
-          <iframe title="Model 4"
-            src="https://sketchfab.com/3d-models/colliuris-pensylvanica-208bb24ff1584b8cb5f1198f698bde72/embed?autostart=0&ui_theme=dark"
-            allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
-        </div>
-        <div class="model-info">
-          <h2>Colliuris pensylvanicae</h2>
-          <p>Model of Colliuris pensylvanica from the entomology collections at the Museum of Southwestern Biology on the campus of the University of New Mexico</p>
-          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/colliuris-pensylvanica-208bb24ff1584b8cb5f1198f698bde72" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
-        </div>
-      </div>
-
-      <!-- ── CARD 5 — replace MODEL_ID_HERE ── -->
-      <div class="model-card">
-        <div class="model-embed">
-          <iframe title="Model 5"
-            src="https://sketchfab.com/3d-models/pasimachus-obsoletus-dc6c4cdd2e44402fb5cdb1f97147a87b/embed?autostart=0&ui_theme=dark"
-            allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
-        </div>
-        <div class="model-info">
-          <h2>Pasimachus obsoletus</h2>
-          <p>Model of Pasimachus obsoletus from the entomology collections at the Museum of Southwestern Biology on the campus of the University of New Mexico</p>
-          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/pasimachus-obsoletus-dc6c4cdd2e44402fb5cdb1f97147a87b" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
-        </div>
-      </div>
-
-      <!-- ── CARD 6 — replace MODEL_ID_HERE ── -->
-      <div class="model-card">
-        <div class="model-embed">
-          <iframe title="Model 6"
-            src="https://sketchfab.com/3d-models/cicindela-pluchra-9e077016ca884e218e7a92447be0947b/embed?autostart=0&ui_theme=dark"
-            allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
-        </div>
-        <div class="model-info">
-          <h2>Cicindela Pluchra</h2>
-          <p>Model of Cicindela Pluchra from the entomology collections at the Museum of Southwestern Biology on the campus of the University of New Mexico</p>
-          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/cicindela-pluchra-9e077016ca884e218e7a92447be0947b" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
-        </div>
-      </div>
-
-      <!-- ── CARD 7 — replace MODEL_ID_HERE ── -->
-      <div class="model-card">
-        <div class="model-embed">
-          <iframe title="Model 7"
-            src="https://sketchfab.com/3d-models/cicindela-scutellaris-1e23f6083d594f0bb8d704ee671d42f7/embed?autostart=0&ui_theme=dark"
-            allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
-        </div>
-        <div class="model-info">
-          <h2>Cicindela scutellaris</h2>
-          <p>Model of Cicindela scutellaris from the entomology collections at the Museum of Southwestern Biology on the campus of the University of New Mexico</p>
-          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/cicindela-scutellaris-1e23f6083d594f0bb8d704ee671d42f7" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
-        </div>
-      </div>
-
-
+  <section class="accessibility-controls" aria-label="Accessibility Controls">
+    <button id="accessibility-toggle" aria-expanded="false" aria-controls="accessibility-menu">
+      Accessibility
+    </button>
+    <div id="accessibility-menu" hidden>
+      <label for="font-size-select">Font Size:</label>
+      <select id="font-size-select">
+        <option value="font-small">Small</option>
+        <option value="font-medium" selected>Medium</option>
+        <option value="font-large">Large</option>
+      </select>
+      <button id="tts-button">Listen to Content</button>
     </div>
-    </div><!-- /.content-wrapper -->
+  </section>
+</nav>
+
+<div class="models-outer">
+  <main class="content" role="main" tabindex="0" aria-label="3D Models Gallery">
+    <div class="models-wrapper">
+      <h1>3D Models</h1>
+      <p style="color:var(--ink-light);margin-top:-0.5rem;">Interactive 3D models from my research. Click and drag to explore each model.</p>
+
+      <div class="models-grid">
+
+        <div class="model-card">
+          <div class="model-embed">
+            <iframe title="Ellipsoptera nevadica 3D model"
+              src="https://sketchfab.com/3d-models/ellipsoptera-nevadica-16f729e63d28401f83c73b1adf962b26/embed?autostart=0&ui_theme=dark"
+              allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="model-info">
+            <h2>Ellipsoptera nevadica</h2>
+            <p>From the entomology collections at the Museum of Southwestern Biology, University of New Mexico.</p>
+            <a class="sketchfab-link" href="https://sketchfab.com/3d-models/ellipsoptera-nevadica-16f729e63d28401f83c73b1adf962b26" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-embed">
+            <iframe title="Eunota cicumpicta 3D model"
+              src="https://sketchfab.com/3d-models/eunota-cicumpicta-b3eccc66a0844f56bfe5d99f7fe567d1/embed?autostart=0&ui_theme=dark"
+              allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="model-info">
+            <h2>Eunota cicumpicta</h2>
+            <p>From the entomology collections at the Museum of Southwestern Biology, University of New Mexico.</p>
+            <a class="sketchfab-link" href="https://sketchfab.com/3d-models/eunota-cicumpicta-b3eccc66a0844f56bfe5d99f7fe567d1" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-embed">
+            <iframe title="Cicindela tranquebarica 3D model"
+              src="https://sketchfab.com/3d-models/cicindela-tranquebarica-780ed6c6558741539f54c22452f9891d/embed?autostart=0&ui_theme=dark"
+              allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="model-info">
+            <h2>Cicindela tranquebarica</h2>
+            <p>From the entomology collections at the Museum of Southwestern Biology, University of New Mexico.</p>
+            <a class="sketchfab-link" href="https://sketchfab.com/3d-models/cicindela-tranquebarica-780ed6c6558741539f54c22452f9891d" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-embed">
+            <iframe title="Colliuris pensylvanica 3D model"
+              src="https://sketchfab.com/3d-models/colliuris-pensylvanica-208bb24ff1584b8cb5f1198f698bde72/embed?autostart=0&ui_theme=dark"
+              allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="model-info">
+            <h2>Colliuris pensylvanica</h2>
+            <p>From the entomology collections at the Museum of Southwestern Biology, University of New Mexico.</p>
+            <a class="sketchfab-link" href="https://sketchfab.com/3d-models/colliuris-pensylvanica-208bb24ff1584b8cb5f1198f698bde72" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-embed">
+            <iframe title="Pasimachus obsoletus 3D model"
+              src="https://sketchfab.com/3d-models/pasimachus-obsoletus-dc6c4cdd2e44402fb5cdb1f97147a87b/embed?autostart=0&ui_theme=dark"
+              allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="model-info">
+            <h2>Pasimachus obsoletus</h2>
+            <p>From the entomology collections at the Museum of Southwestern Biology, University of New Mexico.</p>
+            <a class="sketchfab-link" href="https://sketchfab.com/3d-models/pasimachus-obsoletus-dc6c4cdd2e44402fb5cdb1f97147a87b" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-embed">
+            <iframe title="Cicindela pulchra 3D model"
+              src="https://sketchfab.com/3d-models/cicindela-pluchra-9e077016ca884e218e7a92447be0947b/embed?autostart=0&ui_theme=dark"
+              allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="model-info">
+            <h2>Cicindela pulchra</h2>
+            <p>From the entomology collections at the Museum of Southwestern Biology, University of New Mexico.</p>
+            <a class="sketchfab-link" href="https://sketchfab.com/3d-models/cicindela-pluchra-9e077016ca884e218e7a92447be0947b" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-embed">
+            <iframe title="Cicindela scutellaris 3D model"
+              src="https://sketchfab.com/3d-models/cicindela-scutellaris-1e23f6083d594f0bb8d704ee671d42f7/embed?autostart=0&ui_theme=dark"
+              allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="model-info">
+            <h2>Cicindela scutellaris</h2>
+            <p>From the entomology collections at the Museum of Southwestern Biology, University of New Mexico.</p>
+            <a class="sketchfab-link" href="https://sketchfab.com/3d-models/cicindela-scutellaris-1e23f6083d594f0bb8d704ee671d42f7" target="_blank" rel="noopener noreferrer">View on Sketchfab ↗</a>
+          </div>
+        </div>
+
+      </div><!-- /.models-grid -->
+    </div><!-- /.models-wrapper -->
   </main>
+</div>
 
-  <script>
-    const toggleBtn = document.getElementById('accessibility-toggle');
-    const menu = document.getElementById('accessibility-menu');
+<script>
+  const toggleBtn = document.getElementById('accessibility-toggle');
+  const menu = document.getElementById('accessibility-menu');
 
-    toggleBtn.addEventListener('click', () => {
-      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', String(!expanded));
-      menu.hidden = expanded;
-    });
+  toggleBtn.addEventListener('click', () => {
+    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', String(!expanded));
+    menu.hidden = expanded;
+  });
 
-    document.getElementById('font-size-select').addEventListener('change', (e) => {
-      document.body.classList.remove('font-small', 'font-medium', 'font-large');
-      document.body.classList.add(e.target.value);
-    });
+  document.getElementById('font-size-select').addEventListener('change', e => {
+    document.body.classList.remove('font-small', 'font-medium', 'font-large');
+    document.body.classList.add(e.target.value);
+  });
 
-    document.getElementById('tts-button').addEventListener('click', () => {
-      const main = document.querySelector('main.content');
-      if (!main) return;
-      if (speechSynthesis.speaking) return speechSynthesis.cancel();
-      speechSynthesis.speak(new SpeechSynthesisUtterance(main.innerText));
-    });
-  </script>
+  document.getElementById('tts-button').addEventListener('click', () => {
+    const main = document.querySelector('main.content');
+    if (!main) return;
+    if (speechSynthesis.speaking) return speechSynthesis.cancel();
+    speechSynthesis.speak(new SpeechSynthesisUtterance(main.innerText));
+  });
+</script>
 </body>
 </html>
