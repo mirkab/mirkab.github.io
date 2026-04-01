@@ -1,233 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Blair Mirka</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-    body {
-      margin: 0;
-      height: 100vh;
-      background-image: url(images/Jpegs/Wood.jpg);
-      font-family: sans-serif;
-      display: flex;
-    }
-
-    .content-area {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Playfair+Display&display=swap');
 
     .card {
-      width: 600px;
+      width: min(600px, 94vw);
       background-color: #fff8f0;
       border-radius: 20px;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
-      padding: 50px;
-      font-family: 'La Belle Aurore', cursive;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.30);
+      padding: clamp(1.5rem, 5vw, 3rem);
       transform: rotate(-1.5deg);
       position: relative;
     }
 
     .card h1 {
-      font-size: 42px;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
       font-family: 'Playfair Display', serif;
-      margin: 0 0 15px;
+      margin: 0 0 12px;
       color: #3B4049;
+      border: none;
     }
 
     .card h2 {
-      font-size: 24px;
-      margin: 0 0 15px;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      margin: 0 0 14px;
       font-weight: normal;
       color: #3B4049;
+      border: none;
     }
 
     .card .info {
-      font-size: 22px;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
       line-height: 2;
       color: #3B4049;
       font-family: 'Crimson Text', serif;
     }
 
-    .card .info a {
-      color: #3B4049;
-      text-decoration: none;
-    }
+    .card .info a       { color: #3B4049; text-decoration: none; }
+    .card .info a:hover { text-decoration: underline; }
 
-    .card .info a:hover {
-      text-decoration: underline;
-    }
-
-.seal {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  width: 55px;
-  height: 55px;
-  background-color: transparent; /* no extra bg, handled by SVG */
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 60px;
-  transform: rotate(15deg);
-}
-
-.seal:focus {
-  outline: 2px solid #fff;
-}
-
-
-.seal:hover {
-  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.534);
-}
-
-/* Tooltip container */
-.seal::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 110%;
-  right: 50%;
-  transform: translateX(50%);
-  background: rgba(0,0,0,0.8);
-  color: #fff;
-  padding: 5px 9px;
-  border-radius: 5px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-}
-
-/* Show tooltip on hover */
-.seal:hover::after,
-.seal:focus::after {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-
-    .download-button {
+    .seal {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #e4e4e4;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      background: transparent;
       border: none;
-      padding: 8px 14px;
-      border-radius: 5px;
-      font-size: 16px;
       cursor: pointer;
-      z-index: 10;
+      padding: 0;
+      font-size: 52px;
+      transform: rotate(15deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: box-shadow 0.2s;
     }
+    .seal:hover { box-shadow: 0 0 15px 3px rgba(0,0,0,0.4); }
+    .seal:focus { outline: 2px solid #555; }
+
+    /* Tooltip */
+    .seal::after {
+      content: attr(title);
+      position: absolute;
+      bottom: 110%;
+      right: 50%;
+      transform: translateX(50%);
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 5px 9px;
+      border-radius: 5px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .seal:hover::after, .seal:focus::after { opacity: 1; }
 
     @media print {
-      body {
-        background: white;
-        display: block;
-      }
-
-      .sidebar,
-      .download-button {
-        display: none;
-      }
-
+      body { background: white; }
+      nav.sidebar { display: none; }
       .card {
         transform: none;
         box-shadow: none;
-        margin: 2in auto;
-        page-break-inside: avoid;
+        margin: 1.5in auto;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="sidebar" role="navigation" aria-label="Primary navigation">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="research.html">Research</a>
-    <a href="models.html">3D Models</a>
-    <a href="cv.html">CV</a>
-    <a href="contact.html" class="active">Contact</a>
 
-    <section class="accessibility-controls" aria-label="Accessibility Controls">
-      <button id="accessibility-toggle"
-              aria-expanded="false"
-              aria-controls="accessibility-menu">
-        Accessibility
-      </button>
+<nav class="sidebar" role="navigation" aria-label="Primary navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="research.html">Research</a>
+  <a href="models.html">3D Models</a>
+  <a href="cv.html">CV</a>
+  <a href="contact.html" class="active">Contact</a>
 
-      <div id="accessibility-menu" hidden>
-        <label for="font-size-select">Font Size:</label>
-        <select id="font-size-select">
-          <option value="font-small">Small</option>
-          <option value="font-medium" selected>Medium</option>
-          <option value="font-large">Large</option>
-        </select>
-        <button id="tts-button">Listen to Content</button>
-      </div>
-    </section>
-  </nav>
-
-  
-
-
-<div class="content-area">
-  <div class="card">
-    <h1>Blair Mirka</h1>
-    <h2>Ph.D. Candidate, Geography<br>University of New Mexico</h2>
-    <div class="info">
-      <em>Available for collaborations & freelance projects!</em><br>
-      📍 Albuquerque, NM<br>
-      ✉️ blair.a.mirka@gmail.com <br>
-      🌐 <a href="https://mirkab.github.io/" target="_blank">blairmirka.com</a><br>
-      🧬 <a href="https://orcid.org/0000-0003-4564-1242" target="_blank">ORCID: 0000-0003-4564-1242</a>
+  <section class="accessibility-controls" aria-label="Accessibility Controls">
+    <button id="accessibility-toggle" aria-expanded="false" aria-controls="accessibility-menu">
+      Accessibility
+    </button>
+    <div id="accessibility-menu" hidden>
+      <label for="font-size-select">Font Size:</label>
+      <select id="font-size-select">
+        <option value="font-small">Small</option>
+        <option value="font-medium" selected>Medium</option>
+        <option value="font-large">Large</option>
+      </select>
+      <button id="tts-button">Listen to Content</button>
     </div>
-    <!-- Seal as button inside the card -->
-    <button class="seal" title="Download as PDF" onclick="window.print()" aria-label="Download as PDF">
-  🪲
-</button>
-  </div>
+  </section>
+</nav>
+
+<div class="contact-wrapper">
+  <main aria-label="Contact information">
+    <div class="card">
+      <h1>Blair Mirka</h1>
+      <h2>Ph.D. Candidate, Geography<br>University of New Mexico</h2>
+      <div class="info">
+        <em>Available for collaborations &amp; freelance projects!</em><br>
+        📍 Albuquerque, NM<br>
+        ✉️ <a href="mailto:blair.a.mirka@gmail.com">blair.a.mirka@gmail.com/a><br>
+        🌐 <a href="https://mirkab.github.io/" target="_blank" rel="noopener noreferrer">blairmirka.com</a><br>
+        🧬 <a href="https://orcid.org/0000-0003-4564-1242" target="_blank" rel="noopener noreferrer">ORCID: 0000-0003-4564-1242</a>
+      </div>
+      <button class="seal" title="Print / Save as PDF" onclick="window.print()" aria-label="Print or save as PDF">
+        🪲
+      </button>
+    </div>
+  </main>
 </div>
-  </div>
-<script>// Accessibility toggle
+
+<script>
   const toggleBtn = document.getElementById('accessibility-toggle');
   const menu = document.getElementById('accessibility-menu');
 
   toggleBtn.addEventListener('click', () => {
     const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', !expanded);
+    toggleBtn.setAttribute('aria-expanded', String(!expanded));
     menu.hidden = expanded;
   });
 
-  document.getElementById('font-size-select').addEventListener('change', (e) => {
-  document.body.classList.remove('font-small', 'font-medium', 'font-large');
-  document.body.classList.add(e.target.value);
+  document.getElementById('font-size-select').addEventListener('change', e => {
+    document.body.classList.remove('font-small', 'font-medium', 'font-large');
+    document.body.classList.add(e.target.value);
   });
 
-
-  // Contrast toggle
-  document.getElementById('contrast-toggle').addEventListener('click', (e) => {
-    const highContrast = document.body.classList.toggle('high-contrast');
-    e.target.setAttribute('aria-pressed', highContrast);
-  });
-
-  // Text-to-speech
   document.getElementById('tts-button').addEventListener('click', () => {
-    const main = document.querySelector('main.content');
+    const main = document.querySelector('main');
     if (!main) return;
     if (speechSynthesis.speaking) return speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(main.innerText);
-    speechSynthesis.speak(utterance);
-  });</script>
+    speechSynthesis.speak(new SpeechSynthesisUtterance(main.innerText));
+  });
+</script>
 </body>
 </html>
